@@ -20,6 +20,9 @@ class ProdutoController extends Controller
      */
     public function index()
     {
+      $produtos = Produto::all();
+      $categorias = Categoria::all();
+      return view('produto')->with('produtos', $produtos)->with('categorias', $categorias);
     }
 
     /**

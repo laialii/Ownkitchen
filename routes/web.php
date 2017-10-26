@@ -33,3 +33,8 @@ Route::get('addcomentario', 'ComentarioController@criar');
 Route::post('addcomentario', 'ComentarioController@armazenar');
 
 Route::get('empresas', 'EmpresaController@index');
+Route::get('produtos', 'ProdutoController@index');
+
+Route::get('/maps', function () {
+    return view('index');
+});
