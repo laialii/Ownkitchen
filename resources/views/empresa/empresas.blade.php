@@ -16,6 +16,7 @@
         <th>Nome</th>
         <th>Imagem</th>
         <th>Contato</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -24,6 +25,8 @@
         <th><h2>{{$e->nome}}</h2></th>
         <th><img src="data:image/jpg;base64,{{$e->imagem}}" class="thumbnail" width="100px"/></th>
         <th><p>Contato: {{$e->contato}}</p></th>
+        <th><a href="/editarempresa/{{$e->id}}">Alterar</a></th>
+        <th><a href="/deletarempresa/{{$e->id}}">Deletar</a></th>
       </tr>
 
       @endforeach

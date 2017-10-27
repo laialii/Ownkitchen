@@ -18,6 +18,8 @@
         <th>Descrição</th>
         <th>Preço</th>
         <th>Categoria</th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -33,8 +35,9 @@
             <th>{{$c->nome}}</th>
           @endif
         @endforeach
+        <th><a href="/editarproduto/{{$p->id}}">Alterar</a></th>
+        <th><a href="/deletarproduto/{{$p->id}}">Deletar</a></th>
       </tr>
-
       @endforeach
     </tbody>
   </table>

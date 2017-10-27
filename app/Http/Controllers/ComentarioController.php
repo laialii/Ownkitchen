@@ -47,7 +47,7 @@ class ComentarioController extends Controller
      */
     public function editar($id)
     {
-        //
+        return view('editarcomentario');
     }
 
     /**
@@ -59,17 +59,19 @@ class ComentarioController extends Controller
      */
     public function atualizar(Request $request, $id)
     {
-        //
+      $novosdados = Request::all();
+      $comentario = new Comentario();
+      $comentario = Comentario::find($novosdados['id']);
+      $comentario->nome = $novosdados['nome'];
+      $comentario->nota = $novosdados['nota'];
+
+      $comentario->save();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function deletar($id)
     {
-        //
+      $comentario = Comentario::find($id);
+      $comentario->delete();
+      return redirect()->action('ComentarioController@index');
     }
 }

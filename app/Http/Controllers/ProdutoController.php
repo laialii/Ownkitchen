@@ -13,85 +13,55 @@ use Illuminate\Support\Facades\Validator;
 
 class ProdutoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
       $produtos = Produto::all();
       $categorias = Categoria::all();
-      return view('produto')->with('produtos', $produtos)->with('categorias', $categorias);
+      return view('produto/produto')->with('produtos', $produtos)->with('categorias', $categorias);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function criar()
     {
         $categoria = Categoria::all();
-        return view('addproduto')->with('categoria', $categoria);
+        return view('produto/addproduto')->with('categoria', $categoria);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function armazenar(Request $request)
     {
         Produto::create(Request::all());
         return redirect()->action('ProdutoController@criar');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function mostrar($id)
     {
-        //
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function editar($id)
     {
-        //
+      $produto = Produto::find($id);
+      $categoria = Categoria::all();
+      return view('produto/editarproduto', ['produto'=>$produto])->with($categoria, 'categoria');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function atualizar(Request $request, $id)
     {
-        //
+      $novosdados = Request::all();
+      $produto = new Produto();
+      $produto = Produto::find($novosdados['id']);
+      $produto->titulo = $novosdados['titulo'];
+      $produto->imagem = $novosdados['imagem'];
+      $produto->descricao = $novosdados['descricao'];
+      $produto->preco = $novosdados['preco'];
+      $produto->categoria = $novosdados['categoria'];
+
+      $produto->save();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function deletar($id)
     {
       $produto = Produto::find($id);
-      $produto->delete;
-      return redirect()->action('');
+      $produto->delete();
+      return redirect()->action('ProdutoController@index');
     }
 }

@@ -25,12 +25,18 @@ Route::post('add', 'PictureController@savePicture');
 
 Route::get('addempresa', 'EmpresaController@criar');
 Route::post('addempresa', 'EmpresaController@armazenar');
+Route::get('deletarempresa/{id}', 'EmpresaController@deletar');
 
 Route::get('addproduto', 'ProdutoController@criar');
 Route::post('addproduto', 'ProdutoController@armazenar');
+Route::get('editarproduto/{id}', 'ProdutoController@editar');
+Route::post('atualizarproduto/{id}', 'ProdutoController@atualizar');
+Route::get('deletarproduto/{id}', 'ProdutoController@deletar');
 
 Route::get('addcomentario', 'ComentarioController@criar');
 Route::post('addcomentario', 'ComentarioController@armazenar');
+Route::get('deletarcomentario/{id}', 'ComentarioController@deletar');
+
 
 Route::get('empresas', 'EmpresaController@index');
 Route::get('produtos', 'ProdutoController@index');
