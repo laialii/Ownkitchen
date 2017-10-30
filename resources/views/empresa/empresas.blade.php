@@ -1,73 +1,81 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
+@extends('.../layouts/template')
+@section('conteudo')
+<h1 class="page-header">Empresas</h1>
+<div class="row">
+                <div class="col-lg-12">
+                    <!-- Advanced Tables -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
 
-        <!-- Styles -->
-        <link href="{{ asset('css/jquery.dataTables.min.css') }}" rel="stylesheet">
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                  <table class="table table-striped table-bordered table-hover dataTable no-footer" id="empresa" aria-describedby="dataTables-example_info">
+                                    <thead>
+                                        <tr role="row"><th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 185px;" >Nome</th>
 
-  </head>
-  <body>
-<h1>Empresas</h1>
-  <table id="empresa">
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Imagem</th>
-        <th>Contato</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      @foreach($empresas as $e)
-      <tr>
-        <th><h2>{{$e->nome}}</h2></th>
-        <th><img src="data:image/jpg;base64,{{$e->imagem}}" class="thumbnail" width="100px"/></th>
-        <th><p>Contato: {{$e->contato}}</p></th>
-        <th><a href="/editarempresa/{{$e->id}}">Alterar</a></th>
-        <th><a href="/deletarempresa/{{$e->id}}">Deletar</a></th>
-      </tr>
+                                          <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 242px;" aria-label="Browser: activate to sort column ascending">Imagem</th>
+                                          <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 222px;" aria-label="Platform(s): activate to sort column ascending" aria-sort="ascending">Contato</th>
+                                          <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 159px;" aria-label="Engine version: activate to sort column ascending"></th>
+                                          <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 114px;" aria-label="CSS grade: activate to sort column ascending"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      @foreach($empresas as $e)
+                                      <tr class="gradeU odd">
+                                        <td class="">{{$e->nome}}</td>
+                                        <td class=""><img src="data:image/jpg;base64,{{$e->imagem}}" class="thumbnail" width="100px"/></td>
+                                        <td class="sorting_1">Contato: {{$e->contato}}</td>
+                                        <td class="center "><a href="/editarempresa/{{$e->id}}">Alterar</a></td>
+                                        <td class="center "><a href="/deletarempresa/{{$e->id}}">Deletar</a></td>
+                                      </tr>
+                                      @endforeach
+                                    </tbody>
+                                </table>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Advanced Tables -->
+                </div>
+            </div>
 
-      @endforeach
-    </tbody>
-  </table>
-  <script src="{{ asset('js/app.js') }}"></script>
-  <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-  <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+            @endsection
+            <script src="{{ asset('js/app.js') }}"></script>
+            <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+            <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
 
 
-<script>
-$(document).ready(function(){
-  $('#empresa').DataTable(
-    {
-        "language": {
-    "sEmptyTable": "Nenhum registro encontrado",
-    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
-    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
-    "sInfoPostFix": "",
-    "sInfoThousands": ".",
-    "sLengthMenu": "_MENU_ resultados por página",
-    "sLoadingRecords": "Carregando...",
-    "sProcessing": "Processando...",
-    "sZeroRecords": "Nenhum registro encontrado",
-    "sSearch": "Pesquisar",
-    "oPaginate": {
-        "sNext": "Próximo",
-        "sPrevious": "Anterior",
-        "sFirst": "Primeiro",
-        "sLast": "Último"
-    },
-    "oAria": {
-        "sSortAscending": ": Ordenar colunas de forma ascendente",
-        "sSortDescending": ": Ordenar colunas de forma descendente"
-    }
-}
-    }
+            <script>
+            $(document).ready(function(){
+            $('#empresa').DataTable(
+              {
+                  "language": {
+              "sEmptyTable": "Nenhum registro encontrado",
+              "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+              "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+              "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+              "sInfoPostFix": "",
+              "sInfoThousands": ".",
+              "sLengthMenu": "_MENU_ resultados por página",
+              "sLoadingRecords": "Carregando...",
+              "sProcessing": "Processando...",
+              "sZeroRecords": "Nenhum registro encontrado",
+              "sSearch": "Pesquisar",
+              "oPaginate": {
+                  "sNext": "Próximo",
+                  "sPrevious": "Anterior",
+                  "sFirst": "Primeiro",
+                  "sLast": "Último"
+              },
+              "oAria": {
+                  "sSortAscending": ": Ordenar colunas de forma ascendente",
+                  "sSortDescending": ": Ordenar colunas de forma descendente"
+              }
+            }
+              }
 
-  );
-});
-</script>
-</body>
-</html>
+            );
+            });
+            </script>

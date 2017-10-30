@@ -41,7 +41,7 @@ class ProdutoController extends Controller
     {
       $produto = Produto::find($id);
       $categoria = Categoria::all();
-      return view('produto/editarproduto', ['produto'=>$produto])->with($categoria, 'categoria');
+      return view('produto/editarproduto', ['produto'=>$produto])->with('categoria',$categoria);
     }
 
     public function atualizar(Request $request, $id)
@@ -53,7 +53,7 @@ class ProdutoController extends Controller
       $produto->imagem = $novosdados['imagem'];
       $produto->descricao = $novosdados['descricao'];
       $produto->preco = $novosdados['preco'];
-      $produto->categoria = $novosdados['categoria'];
+      $produto->idCategoria = $novosdados['idCategoria'];
 
       $produto->save();
     }

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Request;
 use App\Comentario;
+use App\User;
+use App\Empresa;
+use App\Produto;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -19,7 +22,10 @@ class ComentarioController extends Controller
 
     public function criar()
     {
-        return view('addcomentario');
+        $usuario = User::all();
+        $empresa = Empresa::all();
+        $produto = Produto::all();
+        return view('addcomentario')->with($usuario, 'usuario')->with($empresa, 'empresa')->with($produto, 'produto');
     }
 
     public function armazenar(Request $request)
@@ -28,35 +34,18 @@ class ComentarioController extends Controller
       return redirect()->action('ComentarioController@criar');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function mostrar($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function editar($id)
     {
         return view('editarcomentario');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function atualizar(Request $request, $id)
     {
       $novosdados = Request::all();
