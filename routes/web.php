@@ -25,6 +25,8 @@ Route::post('add', 'PictureController@savePicture');
 
 Route::get('addempresa', 'EmpresaController@criar');
 Route::post('addempresa', 'EmpresaController@armazenar');
+Route::get('editarempresa/{id}', 'EmpresaController@editar');
+Route::post('atualizarempresa/{id}', 'EmpresaController@atualizar');
 Route::get('deletarempresa/{id}', 'EmpresaController@deletar');
 
 Route::get('addproduto', 'ProdutoController@criar');

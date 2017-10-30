@@ -29,7 +29,7 @@ class ProdutoController extends Controller
     public function armazenar(Request $request)
     {
         Produto::create(Request::all());
-        return redirect()->action('ProdutoController@criar');
+        return redirect()->action('ProdutoController@index');
     }
 
     public function mostrar($id)
@@ -56,6 +56,7 @@ class ProdutoController extends Controller
       $produto->idCategoria = $novosdados['idCategoria'];
 
       $produto->save();
+      return redirect()->action('ProdutoController@index');
     }
 
     public function deletar($id)

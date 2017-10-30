@@ -26,7 +26,7 @@ class EmpresaController extends Controller
     public function armazenar(Request $request)
     {
         Empresa::create(Request::all());
-        return redirect()->action('EmpresaController@criar');
+        return redirect()->action('EmpresaController@index');
     }
 
     public function mostrar($id)
@@ -36,7 +36,8 @@ class EmpresaController extends Controller
 
     public function editar($id)
     {
-      return view('empresa/editarempresa', ['empresa'=>$empresa]);
+      $empresa = Empresa::find($id);
+      return view('empresa/editarempresa', ['e'=>$empresa]);
     }
 
     public function atualizar(Request $request, $id)
@@ -49,6 +50,7 @@ class EmpresaController extends Controller
         $empresa->contato = $novosdados['contato'];
 
         $empresa->save();
+        return redirect()->action('EmpresaController@index');
     }
 
     public function deletar($id)

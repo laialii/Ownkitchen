@@ -6,6 +6,7 @@
   <input type="hidden"  name="_token" value="{{{ csrf_token() }}}" />
 
   <input type="hidden"  name="idUsuario" value="1" />
+  <input type="hidden"  name="id" value="{{$e->id}}" />
 
   <div class="form-group">
     <label>Nome</label>
