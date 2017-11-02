@@ -1,5 +1,4 @@
-@extends('.../layouts/template')
-@section('conteudo')
+
 <div class="col-lg-6">
 <h1 class="page-header">Editar empresa cadastrada</h1>
 <form action="{{action('EmpresaController@atualizar', $e->id)}}" method="post">
@@ -29,4 +28,3 @@
   </div>
   </form>
 </div>
-@endsection

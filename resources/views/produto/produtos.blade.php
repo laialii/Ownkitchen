@@ -1,9 +1,6 @@
-@extends('.../layouts/template')
-@section('conteudo')
 <h1 class="page-header">Produto</h1>
 <div class="row">
                 <div class="col-lg-12">
-                    <!-- Advanced Tables -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
 
@@ -13,7 +10,8 @@
                                 <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
                                   <table class="table table-striped table-bordered table-hover dataTable no-footer" id="empresa" aria-describedby="dataTables-example_info">
                                     <thead>
-                                        <tr role="row"><th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 185px;" aria-label="Rendering engine: activate to sort column ascending">Nome</th>
+                                        <tr role="row">
+                                          <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 185px;" aria-label="Rendering engine: activate to sort column ascending">Nome</th>
                                           <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 242px;">Imagem</th>
                                           <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 222px;"aria-sort="ascending">Descrição</th>
                                           <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 222px;"aria-sort="ascending">Preço</th>
@@ -36,6 +34,7 @@
                                         @endforeach
                                         <td class="center "><a href="/editarproduto/{{$p->id}}">Alterar</a></td>
                                         <td class="center "><a href="/deletarproduto/{{$p->id}}">Deletar</a></td>
+                                        <td class="center "><a href="/detalhesproduto/{{$p->id}}">Visualizar</a></td>
                                       </tr>
                                       @endforeach
                                     </tbody>
@@ -44,11 +43,9 @@
                             </div>
                         </div>
                     </div>
-                    <!--End Advanced Tables -->
                 </div>
             </div>
 
-            @endsection
             <script src="{{ asset('js/app.js') }}"></script>
             <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
             <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
@@ -82,7 +79,6 @@
               }
             }
               }
-
             );
             });
             </script>

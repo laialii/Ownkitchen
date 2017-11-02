@@ -1,5 +1,4 @@
-@extends('.../layouts/template')
-@section('conteudo')
+
 <h1 class="page-header">Empresas</h1>
 <div class="row">
                 <div class="col-lg-12">
@@ -29,6 +28,7 @@
                                         <td class="sorting_1">Contato: {{$e->contato}}</td>
                                         <td class="center "><a href="/editarempresa/{{$e->id}}">Alterar</a></td>
                                         <td class="center "><a href="/deletarempresa/{{$e->id}}">Deletar</a></td>
+                                        <td class="center "><a href="/detalhesempresa/{{$e->id}}">Visualizar</a></td>
                                       </tr>
                                       @endforeach
                                     </tbody>
@@ -41,7 +41,6 @@
                 </div>
             </div>
 
-            @endsection
             <script src="{{ asset('js/app.js') }}"></script>
             <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
             <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>

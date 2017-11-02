@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Request;
 use App\Categoria;
 use App\Produto;
+use App\User;
+use App\Comentario;
+use App\Empresa;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -17,13 +20,13 @@ class ProdutoController extends Controller
     {
       $produtos = Produto::all();
       $categorias = Categoria::all();
-      return view('produto/produto')->with('produtos', $produtos)->with('categorias', $categorias);
+      return view('produto/produtos')->with('produtos', $produtos)->with('categorias', $categorias);
     }
 
     public function criar()
     {
         $categoria = Categoria::all();
-        return view('produto/addproduto')->with('categoria', $categoria);
+        return view('produto/add')->with('categoria', $categoria);
     }
 
     public function armazenar(Request $request)
@@ -34,14 +37,20 @@ class ProdutoController extends Controller
 
     public function mostrar($id)
     {
-
+      $produto = Produto::find($id);
+      $empresa = Empresa::all();
+      $categoria = Categoria::all();
+      $user = User::find($id);
+      $comentarios = Comentario::where('empresa', '=', 0, 'and', 'idTabela', '=', $id)->first();
+      return view('produto/detalhes')->with('p', $produto)->with('u', $user)->with('c', $comentarios)
+                                      ->with('e', $empresa)->with('c', $categoria);
     }
 
     public function editar($id)
     {
       $produto = Produto::find($id);
       $categoria = Categoria::all();
-      return view('produto/editarproduto', ['produto'=>$produto])->with('categoria',$categoria);
+      return view('produto/editar', ['produto'=>$produto])->with('categoria',$categoria);
     }
 
     public function atualizar(Request $request, $id)

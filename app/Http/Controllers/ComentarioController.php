@@ -7,6 +7,7 @@ use App\Comentario;
 use App\User;
 use App\Empresa;
 use App\Produto;
+use EmpresaController;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -20,12 +21,18 @@ class ComentarioController extends Controller
         //
     }
 
-    public function criar()
+    public function comentarEmEmpresa($id)
     {
-        $usuario = User::all();
+        Comentario::create(Request::all());
+        return redirect()->action('EmpresaController@mostrar', $id);
+    }
+
+    public function comentarEmProduto()
+    {
+        $usuario = app('Illuminate\Contracts\Auth\Guard')->user();
         $empresa = Empresa::all();
         $produto = Produto::all();
-        return view('addcomentario')->with($usuario, 'usuario')->with($empresa, 'empresa')->with($produto, 'produto');
+        return view('addcomentario')->with('usuario', $usuario)->with('empresa', $empresa)->with('produto', $produto);
     }
 
     public function armazenar(Request $request)

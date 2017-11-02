@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Request;
 use App\Empresa;
+use App\User;
+use App\Comentario;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -20,7 +22,7 @@ class EmpresaController extends Controller
 
     public function criar()
     {
-        return view('empresa/addempresa');
+        return view('empresa/add');
     }
 
     public function armazenar(Request $request)
@@ -31,13 +33,16 @@ class EmpresaController extends Controller
 
     public function mostrar($id)
     {
-        //
+      $empresa = Empresa::find($id);
+      $user = User::find($empresa->idUsuario);
+      $comentarios = Comentario::where('empresa', '=', 1, 'and', 'idTabela', '=', $id)->first();
+      return view('empresa/detalhes')->with('e', $empresa)->with('u', $user)->with('c', $comentarios);
     }
 
     public function editar($id)
     {
       $empresa = Empresa::find($id);
-      return view('empresa/editarempresa', ['e'=>$empresa]);
+      return view('empresa/editar', ['e'=>$empresa]);
     }
 
     public function atualizar(Request $request, $id)
@@ -58,5 +63,21 @@ class EmpresaController extends Controller
       $empresa = Empresa::find($id);
       $empresa->delete();
       return redirect()->action('EmpresaController@index');
+    }
+
+    public function AdicionarComentario($id){
+      $params = Request::all();
+
+      $comentario = new Comentario;
+      $comentario->comentario = $params['comentario'];
+      $comentario->autorizar =  $params['autorizar'];
+      $comentario->nota = $params['nota'];
+      $comentario->idUsuario = $params['idUsuario'];
+      $comentario->empresa = $params['empresa'];
+      $comentario->idTabela = $params['idTabela'];
+      $comentario->save();
+
+      $posts = Posts::find($id);
+
     }
 }

@@ -1,6 +1,6 @@
-@extends('.../layouts/template')
-@section('conteudo')
+
 <div class="col-lg-6">
+  <h1 class="page-header">Criar empresa</h1>
   <form action="/addempresa" method="post">
     <input type="hidden"  name="_token" value="{{{ csrf_token() }}}" />
 
@@ -28,4 +28,3 @@
     </div>
   </form>
 </div>
-@endsection
