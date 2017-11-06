@@ -10,8 +10,7 @@
   <title>Ownkitchen</title>
 
   <meta name="description" content="Free Admin Template Based On Twitter Bootstrap 3.x">
-  <meta name="author" content="">
-
+  <meta name="author" content="Laiali">
   <meta name="msapplication-TileColor" content="#5bc0de" />
   <meta name="msapplication-TileImage" content="assets/img/metis-tile.png" />
 
