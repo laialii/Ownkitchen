@@ -16,9 +16,11 @@ use Illuminate\Support\Facades\Validator;
 
 class ComentarioController extends Controller
 {
-    public function index()
+    public function __construct()
     {
-        //
+      $this->middleware('auth',
+                        ['only' => ['comentarEmEmpresa', 'comentarEmProduto',
+                                    'editar', 'deletar']]);
     }
 
     public function comentarEmEmpresa($id)
@@ -27,12 +29,10 @@ class ComentarioController extends Controller
         return redirect()->action('EmpresaController@mostrar', $id);
     }
 
-    public function comentarEmProduto()
+    public function comentarEmProduto($id)
     {
-        $usuario = app('Illuminate\Contracts\Auth\Guard')->user();
-        $empresa = Empresa::all();
-        $produto = Produto::all();
-        return view('addcomentario')->with('usuario', $usuario)->with('empresa', $empresa)->with('produto', $produto);
+      Comentario::create(Request::all());
+      return redirect()->action('ProdutoController@mostrar', $id);
     }
 
     public function armazenar(Request $request)
@@ -41,17 +41,10 @@ class ComentarioController extends Controller
       return redirect()->action('ComentarioController@criar');
     }
 
-
-    public function mostrar($id)
-    {
-        //
-    }
-
     public function editar($id)
     {
         return view('editarcomentario');
     }
-
 
     public function atualizar(Request $request, $id)
     {

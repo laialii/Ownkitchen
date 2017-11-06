@@ -1,6 +1,6 @@
 
 <div class="col-lg-6">
-  <h1 class="page-header">Editar produto cadastrada</h1>
+  <h1 class="page-header">Cadastrar produto</h1>
   <form action="/addproduto" method="post">
     <input type="hidden"  name="_token" value="{{{ csrf_token() }}}" />
 
@@ -8,23 +8,23 @@
 
     <div class="form-group">
       <label>Titulo</label>
-      <input name="titulo" class="form-control pull-right">
+      <input name="titulo" class="form-control pull-right" value="{{ old('titulo') }}">
     </div>
 
     <div class="form-group">
       <label>Descrição</label>
-      <textarea name="descricao" class="form-control pull-right">
+      <textarea name="descricao" class="form-control pull-right" value="{{ old('descricao') }}">
       </textarea>
     </div>
 
     <div class="form-group">
       <label>Imagem</label>
-      <input type="file" name="imagem" class="form-control pull-right">
+      <input type="file" name="imagem" class="form-control pull-right" value="{{ old('imagem') }}">
     </div>
 
     <div class="form-group">
       <label>Valor:</label>
-      <input type="double" name="preco" class="form-control pull-right">
+      <input type="double" name="preco" class="form-control pull-right" value="{{ old('preco') }}">
     </div>
 
     <div class="form-group">
@@ -32,7 +32,7 @@
       <select name="idCategoria" class="form-control" required="">
         <option value="">Selecione...</option>
         @foreach ($categoria as $c)
-          <option value="{{$c->id}}">{{$c->nome}}</option>
+          <option value="{{$c->id}}" value="{{ old('$c->id') }}">{{$c->nome}}</option>
         @endforeach
       </select>
     </div>

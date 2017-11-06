@@ -7,6 +7,7 @@ use App\Empresa;
 use App\User;
 use App\Comentario;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EmpresaRequest;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
@@ -14,6 +15,13 @@ use Illuminate\Support\Facades\Validator;
 
 class EmpresaController extends Controller
 {
+
+    public function __construct()
+    {
+      $this->middleware('auth',
+                        ['only' => ['criar', 'armazenar', 'editar', 'deletar']]);
+    }
+
     public function index()
     {
       $empresas = Empresa::all();
@@ -25,18 +33,20 @@ class EmpresaController extends Controller
         return view('empresa/add');
     }
 
-    public function armazenar(Request $request)
+    public function armazenar(EmpresaRequest $request)
     {
-        Empresa::create(Request::all());
-        return redirect()->action('EmpresaController@index');
+        Empresa::create($request->all());
+        return redirect()->action('EmpresaController@index')
+                        ->withInput(Request::only('nome'));
     }
 
     public function mostrar($id)
     {
       $empresa = Empresa::find($id);
       $user = User::find($empresa->idUsuario);
-      $comentarios = Comentario::where('empresa', '=', 1, 'and', 'idTabela', '=', $id)->first();
-      return view('empresa/detalhes')->with('e', $empresa)->with('u', $user)->with('c', $comentarios);
+      $users = User::all();
+      $comentarios = Comentario::where('empresa', '=', 1, 'and', 'idTabela', '=', $id)->get();
+      return view('empresa/detalhes')->with('e', $empresa)->with('u', $user)->with('us', $users)->with('c', $comentarios);
     }
 
     public function editar($id)

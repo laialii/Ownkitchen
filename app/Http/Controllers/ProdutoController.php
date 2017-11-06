@@ -9,6 +9,8 @@ use App\User;
 use App\Comentario;
 use App\Empresa;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProdutoRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
@@ -16,6 +18,12 @@ use Illuminate\Support\Facades\Validator;
 
 class ProdutoController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('auth',
+                        ['only' => ['criar', 'editar', 'deletar']]);
+    }
+
     public function index()
     {
       $produtos = Produto::all();
@@ -29,21 +37,20 @@ class ProdutoController extends Controller
         return view('produto/add')->with('categoria', $categoria);
     }
 
-    public function armazenar(Request $request)
+    public function armazenar(ProdutoRequest $request)
     {
-        Produto::create(Request::all());
+        Produto::create($request->all());
         return redirect()->action('ProdutoController@index');
     }
 
     public function mostrar($id)
     {
       $produto = Produto::find($id);
-      $empresa = Empresa::all();
+      $empresa = Empresa::find($produto->idEmpresa);
       $categoria = Categoria::all();
-      $user = User::find($id);
-      $comentarios = Comentario::where('empresa', '=', 0, 'and', 'idTabela', '=', $id)->first();
-      return view('produto/detalhes')->with('p', $produto)->with('u', $user)->with('c', $comentarios)
-                                      ->with('e', $empresa)->with('c', $categoria);
+      $user = User::all();
+      $comentarios = Comentario::where('empresa', '=', 0, 'and', 'idTabela', '=', $id)->get();
+      return view('produto/detalhes',['p'=>$produto, 'u'=>$user,'comentario'=>$comentarios,'e'=>$empresa,'c'=>$categoria]);
     }
 
     public function editar($id)
