@@ -5,18 +5,18 @@
  * @link https://github.com/puikinsh/Bootstrap-Admin-Template
  */
 body.boxed {
-  background: url("../img/pattern/arches.png") repeat;
+  background: url("../img/pattern/purty_wood.png") repeat;
 }
 #top > .navbar {
-  border-top: 3px solid #428bca;
+  border-top: 3px solid #9D9D9D;
 }
 #top > .navbar .dropdown-menu > li > a:hover,
 #top > .navbar .dropdown-menu > li > a:focus {
-  background-color: #428bca;
+  background-color: #9D9D9D;
   color: #ffffff;
 }
 #menu {
-  background-color: #428bca !important;
+  background-color: #9D9D9D !important;
 }
 #menu > li > a {
   color: #ffffff;

@@ -93,6 +93,8 @@ body {
 @media (min-width: 1200px) {
   body.boxed {
     margin-bottom: 0;
+    background: url("../img/pattern/purty_wood.png") repeat;
+
   }
   body.boxed .Wrap,
   body.boxed #wrap,
@@ -192,7 +194,7 @@ body {
 }
 @media (min-width: 768px) {
   .search-bar {
-    float: left;
+    float: right;
     padding: 10px 4px;
   }
   .side-right .search-bar {
