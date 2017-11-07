@@ -79,10 +79,16 @@
             </div>
             @else
             <div class="btn-group">
-              <a href="{{ route('logout') }}" data-toggle="tooltip" data-original-title="Sair" data-placement="bottom"
-              class="btn btn-default btn-sm">
-                <i class="glyphicon glyphicon-log-out"></i>
+              <a href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();"
+                           data-toggle="tooltip" data-original-title="Sair" data-placement="bottom"
+                           class="btn btn-default btn-sm">
+                  <i class="glyphicon glyphicon-log-out"></i>
               </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+              </form>
             </div>
             @endif
           </div>

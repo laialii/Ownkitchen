@@ -6,11 +6,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('list', 'PictureController@showPictureList');
-Route::get('pic/{id}', 'PictureController@showPicture');
-Route::get('add', 'PictureController@addPicture');
-Route::post('add', 'PictureController@savePicture');
 
 Route::get('addempresa', 'EmpresaController@criar');
 Route::post('addempresa', 'EmpresaController@armazenar');

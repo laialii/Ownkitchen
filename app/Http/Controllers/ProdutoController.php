@@ -10,7 +10,6 @@ use App\Comentario;
 use App\Empresa;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProdutoRequest;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
