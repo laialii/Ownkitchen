@@ -1,6 +1,29 @@
-<head>
-  <link href="{{ asset('css/jquery.dataTables.min.css') }}" rel="stylesheet">
-</head>
+@extends('.../layouts/template')
+@section('estilos')
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="assets/lib/iconic/font/css/open-iconic-bootstrap.css">
+
+  <!-- Metis core stylesheet -->
+  <link rel="stylesheet" href="assets/css/main.css">
+
+  <!-- metisMenu stylesheet -->
+  <link rel="stylesheet" href="assets/lib/metismenu/metisMenu.css">
+
+  <!-- onoffcanvas stylesheet -->
+  <link rel="stylesheet" href="assets/lib/onoffcanvas/onoffcanvas.css">
+
+  <!-- animate.css stylesheet -->
+  <link rel="stylesheet" href="assets/lib/animate.css/animate.css">
+  <link rel="stylesheet/less" type="text/css" href="assets/less/theme.less">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script>
+
+@endsection
+
+@section('conteudo')
 <div class="col-lg-12">
   <div class="col-md-6">
     <h1 class="page-header">{{$p->nome}}</h1>
@@ -32,56 +55,56 @@
       <tr>
         <td><strong>Categoria</strong></td>
         @foreach($c as $categorias)
-          @if ($p->idCategoria == $categorias->id)
-            <td>{{$categorias->nome}}</td>
-          @endif
+        @if ($p->idCategoria == $categorias->id)
+        <td>{{$categorias->nome}}</td>
+        @endif
         @endforeach
       </tr>
       @if(Auth::check())
-        @if(Auth::user()->id == $e->idUsuario)
-          <tr>
-            <td><a href="{{action('EmpresaController@editar', $e->id)}}">Alterar</a></td>
-            <td><a href="{{action('EmpresaController@deletar', $e->id)}}">Excluir</a></td>
-          </tr>
-        @endif
+      @if(Auth::user()->id == $e->idUsuario)
+      <tr>
+        <td><a href="{{action('EmpresaController@editar', $e->id)}}">Alterar</a></td>
+        <td><a href="{{action('EmpresaController@deletar', $e->id)}}">Excluir</a></td>
+      </tr>
+      @endif
       @endif
     </table>
   </div>
   <div class="col-md-6">
     <h3 class="page-header">Comentarios</h3>
     @if (count($comentario) > 0)
-      <table id="comentarios" width="25%">
-        <tr>
-          <th></th>
-          <th></th>
-        </tr>
-        @foreach($comentario as $comentarios)
-        <tr>
-          <td>Nome:</td>
-          @foreach($u as $user)
-            @if ($comentarios->idUsuario == $user->id)
-              <td>{{$user->name}}</td>
-            @endif
-          @endforeach
-        </tr>
-        <tr>
-          <td>Comentário:</td>
-          <td>{{$comentarios->comentario}}</td>
-        </tr>
-        <tr>
-          <td>Nota:</td>
-          <td>{{$comentarios->nota}}</td>
-        </tr>
-        @if(Auth::check())
-          @if(Auth::user()->id == $comentarios->idUsuario)
-          <tr>
-            <td><a href="{{action('ComentarioController@editar', $comentarios->id)}}">Alterar</a></td>
-            <td><a href="{{action('ComentarioController@deletar', $comentarios->id)}}">Excluir</a></td>
-          </tr>
-          @endif
+    <table id="comentarios" width="25%">
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+      @foreach($comentario as $comentarios)
+      <tr>
+        <td>Nome:</td>
+        @foreach($u as $user)
+        @if ($comentarios->idUsuario == $user->id)
+        <td>{{$user->name}}</td>
         @endif
-      </table>
-      @endforeach
+        @endforeach
+      </tr>
+      <tr>
+        <td>Comentário:</td>
+        <td>{{$comentarios->comentario}}</td>
+      </tr>
+      <tr>
+        <td>Nota:</td>
+        <td>{{$comentarios->nota}}</td>
+      </tr>
+      @if(Auth::check())
+      @if(Auth::user()->id == $comentarios->idUsuario)
+      <tr>
+        <td><a href="{{action('ComentarioController@editar', $comentarios->id)}}">Alterar</a></td>
+        <td><a href="{{action('ComentarioController@deletar', $comentarios->id)}}">Excluir</a></td>
+      </tr>
+      @endif
+      @endif
+    </table>
+    @endforeach
     @else
     <p>Não há comentários</p>
     @endif
@@ -118,33 +141,35 @@
 <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
 <script>
 $(document).ready(function(){
-$('#comentarios').DataTable(
-  {
+  $('#comentarios').DataTable(
+    {
       "language": {
-  "sEmptyTable": "Nenhum registro encontrado",
-  "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-  "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
-  "sInfoFiltered": "(Filtrados de _MAX_ registros)",
-  "sInfoPostFix": "",
-  "sInfoThousands": ".",
-  "sLengthMenu": "_MENU_ resultados por página",
-  "sLoadingRecords": "Carregando...",
-  "sProcessing": "Processando...",
-  "sZeroRecords": "Nenhum registro encontrado",
-  "sSearch": "Pesquisar",
-  "oPaginate": {
-      "sNext": "Próximo",
-      "sPrevious": "Anterior",
-      "sFirst": "Primeiro",
-      "sLast": "Último"
-  },
-  "oAria": {
-      "sSortAscending": ": Ordenar colunas de forma ascendente",
-      "sSortDescending": ": Ordenar colunas de forma descendente"
-  }
-}
-  }
+        "sEmptyTable": "Nenhum registro encontrado",
+        "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+        "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+        "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+        "sInfoPostFix": "",
+        "sInfoThousands": ".",
+        "sLengthMenu": "_MENU_ resultados por página",
+        "sLoadingRecords": "Carregando...",
+        "sProcessing": "Processando...",
+        "sZeroRecords": "Nenhum registro encontrado",
+        "sSearch": "Pesquisar",
+        "oPaginate": {
+          "sNext": "Próximo",
+          "sPrevious": "Anterior",
+          "sFirst": "Primeiro",
+          "sLast": "Último"
+        },
+        "oAria": {
+          "sSortAscending": ": Ordenar colunas de forma ascendente",
+          "sSortDescending": ": Ordenar colunas de forma descendente"
+        }
+      }
+    }
 
-);
+  );
 });
 </script>
+
+@endsection
