@@ -1,28 +1,4 @@
 @extends('.../layouts/template')
-@section('estilos')
-
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.css">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="assets/lib/iconic/font/css/open-iconic-bootstrap.css">
-
-  <!-- Metis core stylesheet -->
-  <link rel="stylesheet" href="assets/css/main.css">
-
-  <!-- metisMenu stylesheet -->
-  <link rel="stylesheet" href="assets/lib/metismenu/metisMenu.css">
-
-  <!-- onoffcanvas stylesheet -->
-  <link rel="stylesheet" href="assets/lib/onoffcanvas/onoffcanvas.css">
-
-  <!-- animate.css stylesheet -->
-  <link rel="stylesheet" href="assets/lib/animate.css/animate.css">
-  <link rel="stylesheet/less" type="text/css" href="assets/less/theme.less">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script>
-
-@endsection
-
 @section('conteudo')
 <h1 class="page-header">Empresas</h1>
 <div class="row">

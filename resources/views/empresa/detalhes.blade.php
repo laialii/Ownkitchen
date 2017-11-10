@@ -1,32 +1,5 @@
 @extends('.../layouts/template')
-@section('estilos')
-
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.css">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="assets/lib/iconic/font/css/open-iconic-bootstrap.css">
-
-  <!-- Metis core stylesheet -->
-  <link rel="stylesheet" href="assets/css/main.css">
-
-  <!-- metisMenu stylesheet -->
-  <link rel="stylesheet" href="assets/lib/metismenu/metisMenu.css">
-
-  <!-- onoffcanvas stylesheet -->
-  <link rel="stylesheet" href="assets/lib/onoffcanvas/onoffcanvas.css">
-
-  <!-- animate.css stylesheet -->
-  <link rel="stylesheet" href="assets/lib/animate.css/animate.css">
-  <link rel="stylesheet/less" type="text/css" href="assets/less/theme.less">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script>
-
-@endsection
-
 @section('conteudo')
-<head>
-  <link href="{{ asset('css/jquery.dataTables.min.css') }}" rel="stylesheet">
-</head>
 <div class="col-lg-12">
   <div class="col-md-6">
     <h1 class="page-header">{{$e->nome}}</h1>

@@ -13,6 +13,26 @@
   <meta name="author" content="Laiali">
   <meta name="msapplication-TileColor" content="#5bc0de" />
   <meta name="msapplication-TileImage" content="assets/img/metis-tile.png" />
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../assets/lib/bootstrap/css/bootstrap.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../assets/lib/iconic/font/css/open-iconic-bootstrap.css">
+
+  <!-- Metis core stylesheet -->
+  <link rel="stylesheet" href="../assets/css/main.css">
+
+  <!-- metisMenu stylesheet -->
+  <link rel="stylesheet" href="../assets/lib/metismenu/metisMenu.css">
+
+  <!-- onoffcanvas stylesheet -->
+  <link rel="stylesheet" href="../assets/lib/onoffcanvas/onoffcanvas.css">
+
+  <!-- animate.css stylesheet -->
+  <link rel="stylesheet" href="../assets/lib/animate.css/animate.css">
+  <link rel="stylesheet/less" type="text/css" href="../assets/less/theme.less">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script>
+
 @yield('estilos')
 </head>
 <body class="boxed">
@@ -36,7 +56,7 @@
         <!-- /.search-bar -->
         <div class="main-bar center">
 
-          <a href="index.html" class="navbar-brand"><img src="assets/img/logo.png" alt=""></a>
+          <a href="index.html" class="navbar-brand"><img src="../assets/img/logo.png" alt=""></a>
 
         </div>
         <!-- /.main-bar -->
@@ -125,13 +145,13 @@
 </footer>
 <!-- /#footer -->
 <!--jQuery -->
-<script src="assets/lib/jquery/jquery.js"></script>
+<script src="../assets/lib/jquery/jquery.js"></script>
 <!--Bootstrap -->
-<script src="assets/lib/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/lib/bootstrap/js/bootstrap.js"></script>
 <!-- MetisMenu -->
-<script src="assets/lib/metismenu/metisMenu.js"></script>
+<script src="../assets/lib/metismenu/metisMenu.js"></script>
 <!-- Screenfull -->
-<script src="assets/lib/screenfull/screenfull.js"></script>
+<script src="../assets/lib/screenfull/screenfull.js"></script>
 </body>
 
 </html>
