@@ -10,11 +10,10 @@
       </div>
       <div class="panel-body">
         <div class="table-responsive">
-          <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
-            <table class="table table-striped table-bordered table-hover dataTable no-footer" id="empresa" aria-describedby="dataTables-example_info">
+          <div class="dataTables_wrapper form-inline" role="grid">
+            <table class="table table-striped table-bordered table-hover dataTable no-footer display" id="empresa" earia-describedby="dataTables-example_info">
               <thead>
                 <tr role="row"><th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 185px;" >Nome</th>
-
                   <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 242px;" aria-label="Browser: activate to sort column ascending">Imagem</th>
                   <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 222px;" aria-label="Platform(s): activate to sort column ascending" aria-sort="ascending">Contato</th>
                   <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 159px;" aria-label="Engine version: activate to sort column ascending"></th>
@@ -42,11 +41,9 @@
   </div>
 </div>
 
-<script src="{{ asset('js/app.js') }}"></script>
-<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+@endsection
 
-
+@section('datatable')
 <script>
 $(document).ready(function(){
   $('#empresa').DataTable(

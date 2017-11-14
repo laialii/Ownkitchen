@@ -34,5 +34,5 @@ Route::get('produtos', 'ProdutoController@index');
 Route::get('/comentarios', 'ComentarioController@comentariosEmpresa');
 
 Route::get('/x', function () {
-    return view('layouts/template');
+    return view('paginainicial');
 });

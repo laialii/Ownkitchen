@@ -28,7 +28,15 @@
         <td><strong>Contato</strong></td>
         <td>{{$e->contato}}</td>
       </tr>
-    </table>
+    @if(Auth::check())
+      @if(Auth::user()->id == $e->idUsuario)
+      <tr>
+        <td><a href="{{action('EmpresaController@editar', $e->id)}}">Alterar</a></td>
+        <td><a href="{{action('EmpresaController@deletar', $e->id)}}">Excluir</a></td>
+      </tr>
+      @endif
+    @endif
+  </table>
   </div>
   <div class="col-md-6">
     <h3 class="page-header">Comentarios</h3>

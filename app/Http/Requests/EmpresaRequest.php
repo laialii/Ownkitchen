@@ -14,7 +14,7 @@ class EmpresaRequest extends FormRequest
     public function rules()
     {
         return [
-          'nome.required' => 'O campo :attribute não pode ficar vazio.'
+          'nome.required' => 'O campo :attribute não pode ficar vazio.',
           'contato' => 'required|min:8'
         ];
     }

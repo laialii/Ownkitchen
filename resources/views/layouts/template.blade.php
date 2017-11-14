@@ -9,7 +9,7 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <title>Ownkitchen</title>
 
-  <meta name="description" content="Free Admin Template Based On Twitter Bootstrap 3.x">
+  <meta name="description" content="Plataforma de venda e compra de comidas">
   <meta name="author" content="Laiali">
   <meta name="msapplication-TileColor" content="#5bc0de" />
   <meta name="msapplication-TileImage" content="assets/img/metis-tile.png" />
@@ -32,6 +32,7 @@
   <link rel="stylesheet" href="../assets/lib/animate.css/animate.css">
   <link rel="stylesheet/less" type="text/css" href="../assets/less/theme.less">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script>
+
 
 @yield('estilos')
 </head>
@@ -141,17 +142,21 @@
 </div>
 <!-- /#wrap -->
 <footer class="Footer bg-red dker">
-  <p>2017 &copy; Metis Bootstrap Admin Template v2.4.2</p>
+  <p>2017 &copy; Feito por Laiali</p>
 </footer>
 <!-- /#footer -->
-<!--jQuery -->
-<script src="../assets/lib/jquery/jquery.js"></script>
 <!--Bootstrap -->
 <script src="../assets/lib/bootstrap/js/bootstrap.js"></script>
 <!-- MetisMenu -->
 <script src="../assets/lib/metismenu/metisMenu.js"></script>
 <!-- Screenfull -->
 <script src="../assets/lib/screenfull/screenfull.js"></script>
+<!--jQuery -->
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ asset('js/jquery.dataTables.js') }}"></script>
+
+@yield('datatable')
 </body>
 
 </html>
