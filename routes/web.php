@@ -31,8 +31,6 @@ Route::get('deletarcomentario/{id}', 'ComentarioController@deletar');
 Route::get('empresas', 'EmpresaController@index');
 Route::get('produtos', 'ProdutoController@index');
 
-Route::get('/comentarios', 'ComentarioController@comentariosEmpresa');
+Route::get('comentarios', 'ComentarioController@comentariosEmpresa');
 
-Route::get('/x', function () {
-    return view('paginainicial');
-});
+Route::get('home', 'HomeController@index');

@@ -1,7 +1,12 @@
 @extends('.../layouts/template')
 @section('conteudo')
 <div class="col-lg-12">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="col-md-6">
+    <div class="main-bar">
+            <h3>
+              <i class="fa fa-building"></i>{{$e->nome}}</h3>
+          </div>
     <h1 class="page-header">{{$e->nome}}</h1>
     <table width="25%">
       <tr>
@@ -102,6 +107,7 @@
     <p>Faça o <a href="{{ route('login') }}">login</a> ou <a href="{{ route('register') }}">cadastre-se</a></p>
     @endif
   </div>
+  </nav>
 </div>
 
 <script src="{{ asset('js/app.js') }}"></script>

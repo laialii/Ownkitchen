@@ -45,7 +45,10 @@ class EmpresaController extends Controller
       $empresa = Empresa::find($id);
       $user = User::find($empresa->idUsuario);
       $users = User::all();
-      $comentarios = Comentario::where('empresa', '=', 1, 'and', 'idTabela', '=', $id)->get();
+      $comentarios = Comentario::where([
+                  ['empresa', '=', 1],
+                  ['idTabela', '=', $id]
+                ])->get();
       return view('empresa/detalhes')->with('e', $empresa)->with('u', $user)->with('us', $users)->with('c', $comentarios);
     }
 

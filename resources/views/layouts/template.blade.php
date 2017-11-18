@@ -55,9 +55,9 @@
           <!-- /.main-search -->
         </div>
         <!-- /.search-bar -->
-        <div class="main-bar center">
+        <div class="main-bar">
 
-          <a href="index.html" class="navbar-brand"><img src="../assets/img/logo.png" alt=""></a>
+          <a href="/home" class="navbar-brand"><img src="../assets/img/logo.png" alt=""></a>
 
         </div>
         <!-- /.main-bar -->

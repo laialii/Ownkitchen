@@ -26,9 +26,9 @@
                   <td class="">{{$e->nome}}</td>
                   <td class=""><img src="data:image/jpg;base64,{{$e->imagem}}" class="thumbnail" width="100px"/></td>
                   <td class="sorting_1">Contato: {{$e->contato}}</td>
-                  <td class="center "><a href="/editarempresa/{{$e->id}}">Alterar</a></td>
-                  <td class="center "><a href="/deletarempresa/{{$e->id}}">Deletar</a></td>
-                  <td class="center "><a href="/detalhesempresa/{{$e->id}}">Visualizar</a></td>
+                  <td class="center "><a href="{{action('EmpresaController@editar', $e->id)}}">Alterar</a></td>
+                  <td class="center "><a href="{{action('EmpresaController@deletar', $e->id)}}">Deletar</a></td>
+                  <td class="center "><a href="{{action('EmpresaController@mostrar', $e->id)}}">Visualizar</a></td>
                 </tr>
                 @endforeach
               </tbody>

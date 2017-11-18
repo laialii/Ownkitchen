@@ -48,7 +48,10 @@ class ProdutoController extends Controller
       $empresa = Empresa::find($produto->idEmpresa);
       $categoria = Categoria::all();
       $user = User::all();
-      $comentarios = Comentario::where('empresa', '=', 0, 'and', 'idTabela', '=', $id)->get();
+      $comentarios = Comentario::where([
+                    ['empresa', '=', 0],
+                    ['idTabela', '=', $id]
+                  ])->get();
       return view('produto/detalhes',['p'=>$produto, 'u'=>$user,'comentario'=>$comentarios,'e'=>$empresa,'c'=>$categoria]);
     }
 
