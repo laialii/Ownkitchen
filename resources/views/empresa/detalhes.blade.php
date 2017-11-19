@@ -1,51 +1,65 @@
 @extends('.../layouts/template')
 @section('conteudo')
-<div class="col-lg-12">
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="col-md-6">
-    <div class="main-bar">
-            <h3>
-              <i class="fa fa-building"></i>{{$e->nome}}</h3>
-          </div>
-    <h1 class="page-header">{{$e->nome}}</h1>
-    <table width="25%">
-      <tr>
-        <th></th>
-        <th></th>
-      </tr>
-      <tr>
-        <td><strong>Imagem:</strong></td>
-        <td>{{$e->imagem}}</td>
-      </tr>
-      <tr>
-        <td><strong>Nome</strong></td>
-        <td>{{$e->nome}}</td>
-      </tr>
-      <tr>
-        <td><strong>Descrição</strong></td>
-        <td>{{$e->descricao}}</td>
-      </tr>
-      <tr>
-        <td><strong>Preço</strong></td>
-        <td>{{$e->preco}}</td>
-      </tr>
-      <tr>
-        <td><strong>Contato</strong></td>
-        <td>{{$e->contato}}</td>
-      </tr>
-    @if(Auth::check())
-      @if(Auth::user()->id == $e->idUsuario)
-      <tr>
-        <td><a href="{{action('EmpresaController@editar', $e->id)}}">Alterar</a></td>
-        <td><a href="{{action('EmpresaController@deletar', $e->id)}}">Excluir</a></td>
-      </tr>
-      @endif
-    @endif
-  </table>
+<div class=".col-lg-12 ui-sortable">
+  <div class="box ui-sortable-handle">
+    <header>
+      <h4 class="page-header">{{$e->nome}}</h4>
+      <div class="toolbar">
+        @foreach($us as $users)
+        @if($e->idUsuario == $users->id)
+        <h4 class="page-header"><small>Por: {{$users->name}} </small> </h4>
+        @endif
+        @endforeach
+      </div>
+    </header>
+    <div class="body">
+      <table width="25%">
+        <tr>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr>
+          <td><strong>Imagem:</strong></td>
+          <td>{{$e->imagem}}</td>
+        </tr>
+        <tr>
+          <td><strong>Nome</strong></td>
+          <td>{{$e->nome}}</td>
+        </tr>
+        <tr>
+          <td><strong>Descrição</strong></td>
+          <td>{{$e->descricao}}</td>
+        </tr>
+        <tr>
+          <td><strong>Preço</strong></td>
+          <td>{{$e->preco}}</td>
+        </tr>
+        <tr>
+          <td><strong>Contato</strong></td>
+          <td>{{$e->contato}}</td>
+        </tr>
+        @if(Auth::check())
+        @if(Auth::user()->id == $e->idUsuario)
+        <tr>
+          <td><a href="{{action('EmpresaController@editar', $e->id)}}">Alterar</a></td>
+          <td><a href="{{action('EmpresaController@deletar', $e->id)}}">Excluir</a></td>
+        </tr>
+        @endif
+        @endif
+      </table>
+    </div>
   </div>
-  <div class="col-md-6">
-    <h3 class="page-header">Comentarios</h3>
-    @if (count($c) > 0)
+</div>
+<div class=".col-lg-6 ui-sortable">
+  <div class="box ui-sortable-handle">
+    <header>
+      <h4 class="page-header">Comentários</h4>
+      <div class="toolbar">
+        <span class="label">label</span>
+      </div>
+    </header>
+    <div class="body">
+      @if (count($c) > 0)
       <table id="comentarios" width="25%">
         <tr>
           <th></th>
@@ -55,9 +69,9 @@
         <tr>
           <td>Nome:</td>
           @foreach($us as $user)
-            @if ($comentarios->idUsuario == $user->id)
-              <td>{{$user->name}}</td>
-            @endif
+          @if ($comentarios->idUsuario == $user->id)
+          <td>{{$user->name}}</td>
+          @endif
           @endforeach
         </tr>
         <tr>
@@ -69,45 +83,46 @@
           <td>{{$comentarios->nota}}</td>
         </tr>
         @if(Auth::check())
-          @if(Auth::user()->id == $comentarios->idUsuario)
-          <tr>
-            <td><a href="{{action('ComentarioController@editar', $comentarios->id)}}">Alterar</a></td>
-            <td><a href="{{action('ComentarioController@deletar', $comentarios->id)}}">Excluir</a></td>
-          </tr>
-          @endif
+        @if(Auth::user()->id == $comentarios->idUsuario)
+        <tr>
+          <td><a href="{{action('ComentarioController@editar', $comentarios->id)}}">Alterar</a></td>
+          <td><a href="{{action('ComentarioController@deletar', $comentarios->id)}}">Excluir</a></td>
+        </tr>
+        @endif
         @endif
       </table>
       @endforeach
-    @else
-    <p>Não há comentários</p>
-    @endif
-  </div>
-  <div class="col-md-6">
-    <h3 class="page-header">Comentar</h3>
-    @if(Auth::check())
-    <form action="{{action('ComentarioController@comentarEmProduto', $e->id)}}" method="post">
-      <input type="hidden"  name="_token" value="{{{ csrf_token() }}}" />
-      <input type="hidden" name="autorizar" value="0">
-      <input type="hidden" name="idUsuario" value="{{Auth::user()->id}}">
-      <input type="hidden" name="idTabela" value="{{$e->id}}">
-      <input type="hidden" name="empresa" value="0">
+      @else
+      <p>Não há comentários</p>
+      @endif
+    </div>
+    <div class="body">
+      <h4>Comentar</h4>
+      @if(Auth::check())
+      <form action="{{action('ComentarioController@comentarEmEmpresa', $e->id)}}" method="post">
+        <input type="hidden"  name="_token" value="{{{ csrf_token() }}}" />
+        <input type="hidden" name="autorizar" value="0">
+        <input type="hidden" name="idUsuario" value="{{Auth::user()->id}}">
+        <input type="hidden" name="idTabela" value="{{$e->id}}">
+        <input type="hidden" name="empresa" value="0">
 
-      <div class="form-group">
-        <textarea name="comentario" rows="3" cols="60" placeholder="Digite seu comentário...">
-        </textarea>
-        <br>
-        <label>Nota</label>
-        <br>
-        <input type="number" name="nota" class="form-control pull-right">
-        <br>
-        <button type="submit" class="btn btn-primary btn-block btn-success">Enviar</button>
-      </div>
-    </form>
-    @else
-    <p>Faça o <a href="{{ route('login') }}">login</a> ou <a href="{{ route('register') }}">cadastre-se</a></p>
-    @endif
+        <div class="form-group">
+          <textarea name="comentario" rows="3" cols="60" placeholder="Digite seu comentário...">
+          </textarea>
+          <br>
+          <h5>Nota</h5>
+          <input type="number" name="nota" class="form-control pull-right">
+          <br>
+          <button type="submit" class="btn btn-success">Enviar</button>
+        </div>
+      </form>
+      @else
+      <p>Faça o <a href="{{ route('login') }}">login</a> ou <a href="{{ route('register') }}">cadastre-se</a></p>
+      @endif
+    </div>
   </div>
-  </nav>
+</div>
+</div>
 </div>
 
 <script src="{{ asset('js/app.js') }}"></script>
@@ -115,34 +130,34 @@
 <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
 <script>
 $(document).ready(function(){
-$('#comentarios').DataTable(
-  {
+  $('#comentarios').DataTable(
+    {
       "language": {
-  "sEmptyTable": "Nenhum registro encontrado",
-  "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-  "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
-  "sInfoFiltered": "(Filtrados de _MAX_ registros)",
-  "sInfoPostFix": "",
-  "sInfoThousands": ".",
-  "sLengthMenu": "_MENU_ resultados por página",
-  "sLoadingRecords": "Carregando...",
-  "sProcessing": "Processando...",
-  "sZeroRecords": "Nenhum registro encontrado",
-  "sSearch": "Pesquisar",
-  "oPaginate": {
-      "sNext": "Próximo",
-      "sPrevious": "Anterior",
-      "sFirst": "Primeiro",
-      "sLast": "Último"
-  },
-  "oAria": {
-      "sSortAscending": ": Ordenar colunas de forma ascendente",
-      "sSortDescending": ": Ordenar colunas de forma descendente"
-  }
-}
-  }
+        "sEmptyTable": "Nenhum registro encontrado",
+        "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+        "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+        "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+        "sInfoPostFix": "",
+        "sInfoThousands": ".",
+        "sLengthMenu": "_MENU_ resultados por página",
+        "sLoadingRecords": "Carregando...",
+        "sProcessing": "Processando...",
+        "sZeroRecords": "Nenhum registro encontrado",
+        "sSearch": "Pesquisar",
+        "oPaginate": {
+          "sNext": "Próximo",
+          "sPrevious": "Anterior",
+          "sFirst": "Primeiro",
+          "sLast": "Último"
+        },
+        "oAria": {
+          "sSortAscending": ": Ordenar colunas de forma ascendente",
+          "sSortDescending": ": Ordenar colunas de forma descendente"
+        }
+      }
+    }
 
-);
+  );
 });
 </script>
 @endsection

@@ -505,7 +505,7 @@ body:not(.sidebar-left-mini) #menu .nav-header {
   clear: both;
 }
 .box header .icons,
-.box header h5,
+.box header h4,
 .box header .toolbar {
   position: relative;
   min-height: 1px;
@@ -519,7 +519,7 @@ body:not(.sidebar-left-mini) #menu .nav-header {
   border-right: 1px solid #ddd;
   box-shadow: 1px 0px 0px #fff;
 }
-.box header h5 {
+.box header h4 {
   padding: 12px;
   font-weight: bold;
 }

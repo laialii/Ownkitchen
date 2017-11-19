@@ -52,7 +52,7 @@ class ProdutoController extends Controller
                     ['empresa', '=', 0],
                     ['idTabela', '=', $id]
                   ])->get();
-      return view('produto/detalhes',['p'=>$produto, 'u'=>$user,'comentario'=>$comentarios,'e'=>$empresa,'c'=>$categoria]);
+      return view('produto/detalhes',['p'=>$produto, 'us'=>$user,'comentario'=>$comentarios,'e'=>$empresa,'c'=>$categoria]);
     }
 
     public function editar($id)
