@@ -29,13 +29,12 @@
 
     <div class="form-group">
       <label>Imagem</label>
-      <input type="file" name="imagem" class="form-control pull-right" value="{{ old('imagem') }}">
+      <input type="file" name="imagem" value="{{ old('imagem') }}">
     </div>
-    <br>
     <br>
 
     <div class="form-group">
-      <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+      <button type="submit" class="btn btn-success">Enviar</button>
     </div>
   </form>
 </div>

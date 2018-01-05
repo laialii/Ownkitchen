@@ -6,6 +6,7 @@ use Request;
 use App\Empresa;
 use App\User;
 use App\Comentario;
+use App\Produto;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmpresaRequest;
 use Illuminate\Support\Facades\Input;
@@ -43,13 +44,15 @@ class EmpresaController extends Controller
     public function mostrar($id)
     {
       $empresa = Empresa::find($id);
+      $produto = Produto::where('idEmpresa', '==', 'id')->get();
       $user = User::find($empresa->idUsuario);
       $users = User::all();
       $comentarios = Comentario::where([
                   ['empresa', '=', 1],
-                  ['idTabela', '=', $id]
+                  ['idTabela', '=', $id],
+                  ['autorizar', '=', 1]
                 ])->get();
-      return view('empresa/detalhes')->with('e', $empresa)->with('u', $user)->with('us', $users)->with('c', $comentarios);
+      return view('empresa/detalhes', ['e' => $empresa,'u'=>$user,'us'=>$users,'c'=>$comentarios,'p'=>$produto]);
     }
 
     public function editar($id)

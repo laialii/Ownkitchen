@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Request;
+use Illuminate\Http\Request;
 use App\Categoria;
 use App\Produto;
 use App\User;
@@ -36,7 +36,7 @@ class ProdutoController extends Controller
         return view('produto/add')->with('categoria', $categoria);
     }
 
-    public function armazenar(ProdutoRequest $request)
+    public function armazenar(Request $request)
     {
         Produto::create($request->all());
         return redirect()->action('ProdutoController@index');

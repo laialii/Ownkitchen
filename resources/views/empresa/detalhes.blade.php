@@ -1,6 +1,6 @@
 @extends('.../layouts/template')
 @section('conteudo')
-<div class=".col-lg-12 ui-sortable">
+<div class="ui-sortable">
   <div class="box ui-sortable-handle">
     <header>
       <h4 class="page-header">{{$e->nome}}</h4>
@@ -19,20 +19,12 @@
           <th></th>
         </tr>
         <tr>
-          <td><strong>Imagem:</strong></td>
+          <td><strong>Imagem</strong></td>
           <td>{{$e->imagem}}</td>
         </tr>
         <tr>
           <td><strong>Nome</strong></td>
           <td>{{$e->nome}}</td>
-        </tr>
-        <tr>
-          <td><strong>Descrição</strong></td>
-          <td>{{$e->descricao}}</td>
-        </tr>
-        <tr>
-          <td><strong>Preço</strong></td>
-          <td>{{$e->preco}}</td>
         </tr>
         <tr>
           <td><strong>Contato</strong></td>
@@ -47,10 +39,30 @@
         @endif
         @endif
       </table>
+
+      Produtos:
+      {{$p}}
     </div>
   </div>
 </div>
-<div class=".col-lg-6 ui-sortable">
+<div class="ui-sortable">
+  <div class="box ui-sortable-handle">
+    <header>
+      <h4 class="page-header">Galeria de produtos</h4>
+    </header>
+    <div class="body">
+      @if (count($p) > 0)
+      @foreach($p as $produtos)
+      <p><a href="{{action('ProdutoController@mostrar', $e->id)}}">{{$produtos->titulo}}</a><br>
+      <hr>
+      @endforeach
+      @else
+      <td><a href="/addproduto" class="btn btn-metis-1 btn-line" data-original-title="" title="">Cadastre seu primeiro produto!</a></td>
+      @endif
+    </div>
+  </div>
+</div>
+<div class="ui-sortable">
   <div class="box ui-sortable-handle">
     <header>
       <h4 class="page-header">Comentários</h4>
@@ -104,7 +116,7 @@
         <input type="hidden" name="autorizar" value="0">
         <input type="hidden" name="idUsuario" value="{{Auth::user()->id}}">
         <input type="hidden" name="idTabela" value="{{$e->id}}">
-        <input type="hidden" name="empresa" value="0">
+        <input type="hidden" name="empresa" value="1">
 
         <div class="form-group">
           <textarea name="comentario" rows="3" cols="60" placeholder="Digite seu comentário...">

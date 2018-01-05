@@ -43,7 +43,7 @@
   <br>
 
   <div class="form-group">
-    <button type="submit" class="btn btn-primary btn-block btn-success">Enviar</button>
+    <button type="submit" class="btn btn-success">Enviar</button>
   </div>
   </form>
 </div>
