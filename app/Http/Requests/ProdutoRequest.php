@@ -15,10 +15,10 @@ class ProdutoRequest extends FormRequest
     {
       return [
         'titulo' => 'required|min:3',
-        'contato' => 'required|min:8',
         'descricao' => 'required|max:500',
         'preco' => 'required|numeric',
-        'idCategoria' => 'required'
+        'idCategoria' => 'required',
+        'imagem' => 'required'
       ];
     }
 

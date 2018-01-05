@@ -36,7 +36,7 @@ class ProdutoController extends Controller
         return view('produto/add')->with('categoria', $categoria);
     }
 
-    public function armazenar(Request $request)
+    public function armazenar(ProdutoRequest $request)
     {
         Produto::create($request->all());
         return redirect()->action('ProdutoController@index');

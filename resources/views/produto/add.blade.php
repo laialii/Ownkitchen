@@ -3,6 +3,15 @@
 @section('conteudo')
 <div class="col-lg-6">
   <h1 class="page-header">Cadastrar produto</h1>
+  @if (count($errors) > 0)
+    @component('alert')
+      <ul>
+        @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    @endcomponent
+  @endif
   <form action="{{action('ProdutoController@armazenar')}}" method="post">
     <input type="hidden"  name="_token" value="{{{ csrf_token() }}}" />
 
@@ -20,7 +29,7 @@
     </div>
 
     <div class="form-group">
-      <label>Valor:</label>
+      <label>Preço:</label>
       <input type="double" name="preco" class="form-control pull-right" value="{{ old('preco') }}">
     </div>
 
