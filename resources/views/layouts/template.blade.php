@@ -98,7 +98,7 @@
           <!-- .nav -->
           <ul class="nav navbar-nav">
             <li><a href="{{action('EmpresaController@criar')}}">Nova empresa</a></li>
-            <li><a href="{{action('ProdutoController@criar')}}">Novo Produto</a></li>
+            <li><a href="{{action('EmpresaController@empresasdousuario', Auth::id())}}">Suas empresas</a></li>
             <li class='dropdown '>
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Listagem <b class="caret"></b>

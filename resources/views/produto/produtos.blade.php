@@ -31,9 +31,9 @@
                   <td>{{$c->nome}}</td>
                   @endif
                   @endforeach
-                  <td class="center "><a href="/editarproduto/{{$p->id}}">Alterar</a></td>
-                  <td class="center "><a href="/deletarproduto/{{$p->id}}">Deletar</a></td>
-                  <td class="center "><a href="/detalhesproduto/{{$p->id}}">Visualizar</a></td>
+                  <td class="center"><a href="/editarproduto/{{$p->id}}"><i class="glyphicon glyphicon-edit"></a></td>
+                  <td class="center"><a href="/deletarproduto/{{$p->id}}"> <i class="glyphicon glyphicon-trash"></a></td>
+                  <td class="center"><a href="/detalhesproduto/{{$p->id}}"><i class="glyphicon glyphicon-search"></a></td>
                 </tr>
                 @endforeach
               </tbody>

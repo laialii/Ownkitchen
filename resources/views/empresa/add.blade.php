@@ -15,7 +15,7 @@
   <form action="/addempresa" method="post">
     <input type="hidden"  name="_token" value="{{{ csrf_token() }}}" />
 
-    <input type="hidden"  name="idUsuario" value="1" />
+    <input type="hidden"  name="idUsuario" value="{{Auth::user()->id}}" />
 
     <div class="form-group">
       <label>Nome</label>

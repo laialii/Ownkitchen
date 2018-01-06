@@ -29,6 +29,12 @@ class EmpresaController extends Controller
       return view('empresa/empresas')->with('empresas', $empresas);
     }
 
+    public function empresasdousuario($id)
+    {
+      $empresas = Empresa::where('idUsuario', $id)->get();
+      return view('empresa/empresas')->with('empresas', $empresas);
+    }
+
     public function criar()
     {
         return view('empresa/add');
@@ -44,7 +50,7 @@ class EmpresaController extends Controller
     public function mostrar($id)
     {
       $empresa = Empresa::find($id);
-      $produto = Produto::where('idEmpresa', '==', 'id')->get();
+      $produtos = Produto::where('idEmpresa', $id)->get();
       $user = User::find($empresa->idUsuario);
       $users = User::all();
       $comentarios = Comentario::where([
@@ -52,7 +58,7 @@ class EmpresaController extends Controller
                   ['idTabela', '=', $id],
                   ['autorizar', '=', 1]
                 ])->get();
-      return view('empresa/detalhes', ['e' => $empresa,'u'=>$user,'us'=>$users,'c'=>$comentarios,'p'=>$produto]);
+      return view('empresa/detalhes', ['e' => $empresa,'u'=>$user,'us'=>$users,'c'=>$comentarios,'p'=>$produtos]);
     }
 
     public function editar($id)
@@ -81,7 +87,8 @@ class EmpresaController extends Controller
       return redirect()->action('EmpresaController@index');
     }
 
-    public function AdicionarComentario($id){
+    public function AdicionarComentario($id)
+    {
       $params = Request::all();
 
       $comentario = new Comentario;

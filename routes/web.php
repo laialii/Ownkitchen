@@ -10,6 +10,7 @@ Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('empresas', 'EmpresaController@index');
+Route::get('empresas/{id}', 'EmpresaController@empresasdousuario')->where('id','[0-9]+');
 Route::get('addempresa', 'EmpresaController@criar');
 Route::post('addempresa', 'EmpresaController@armazenar');
 Route::get('editarempresa/{id}', 'EmpresaController@editar');
@@ -19,7 +20,7 @@ Route::post('atualizarempresa/{id}', 'EmpresaController@atualizar');
 Route::get('deletarempresa/{id}', 'EmpresaController@deletar');
 
 Route::get('produtos', 'ProdutoController@index');
-Route::get('addproduto', 'ProdutoController@criar');
+Route::get('addproduto/{id}', 'ProdutoController@criar')->where('id','[0-9]+');
 Route::post('addproduto', 'ProdutoController@armazenar');
 Route::get('editarproduto/{id}', 'ProdutoController@editar');
 Route::get('detalhesproduto/{id}', 'ProdutoController@mostrar')->where('id','[0-9]+');

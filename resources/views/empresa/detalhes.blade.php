@@ -33,15 +33,12 @@
         @if(Auth::check())
         @if(Auth::user()->id == $e->idUsuario)
         <tr>
-          <td><a href="{{action('EmpresaController@editar', $e->id)}}">Alterar</a></td>
-          <td><a href="{{action('EmpresaController@deletar', $e->id)}}">Excluir</a></td>
+          <td><a href="{{action('EmpresaController@editar', $e->id)}}"> <i class="glyphicon glyphicon-edit"></a></td>
+          <td><a href="{{action('EmpresaController@deletar', $e->id)}}"> <i class="glyphicon glyphicon-trash"></a></td>
         </tr>
         @endif
         @endif
       </table>
-
-      Produtos:
-      {{$p}}
     </div>
   </div>
 </div>
@@ -51,89 +48,105 @@
       <h4 class="page-header">Galeria de produtos</h4>
     </header>
     <div class="body">
+      <!--  -->
       @if (count($p) > 0)
-      @foreach($p as $produtos)
-      <p><a href="{{action('ProdutoController@mostrar', $e->id)}}">{{$produtos->titulo}}</a><br>
-      <hr>
-      @endforeach
-      @else
-      <td><a href="/addproduto" class="btn btn-metis-1 btn-line" data-original-title="" title="">Cadastre seu primeiro produto!</a></td>
-      @endif
-    </div>
-  </div>
-</div>
-<div class="ui-sortable">
-  <div class="box ui-sortable-handle">
-    <header>
-      <h4 class="page-header">Comentários</h4>
-      <div class="toolbar">
-        <span class="label">label</span>
-      </div>
-    </header>
-    <div class="body">
-      @if (count($c) > 0)
-      <table id="comentarios" width="25%">
-        <tr>
-          <th></th>
-          <th></th>
-        </tr>
-        @foreach($c as $comentarios)
-        <tr>
-          <td>Nome:</td>
-          @foreach($us as $user)
-          @if ($comentarios->idUsuario == $user->id)
-          <td>{{$user->name}}</td>
+        @foreach($p as $produtos)
+        <a href="{{action('ProdutoController@mostrar', $produtos->id)}}">{{$produtos->titulo}} <i class="glyphicon glyphicon-search"></i></a>
+          @if(Auth::check())
+          @if(Auth::user()->id == $e->idUsuario)
+          <a href="{{action('ProdutoController@editar', $produtos->id)}}"> <i class="glyphicon glyphicon-edit"></i></a></td>
+          <a href="{{action('ProdutoController@deletar', $produtos->id)}}"> <i class="glyphicon glyphicon-trash"></i></a></td>
           @endif
-          @endforeach
-        </tr>
-        <tr>
-          <td>Comentário:</td>
-          <td>{{$comentarios->comentario}}</td>
-        </tr>
-        <tr>
-          <td>Nota:</td>
-          <td>{{$comentarios->nota}}</td>
-        </tr>
+          @endif
+          <hr>
+        @endforeach
         @if(Auth::check())
-        @if(Auth::user()->id == $comentarios->idUsuario)
-        <tr>
-          <td><a href="{{action('ComentarioController@editar', $comentarios->id)}}">Alterar</a></td>
-          <td><a href="{{action('ComentarioController@deletar', $comentarios->id)}}">Excluir</a></td>
-        </tr>
+          @if(Auth::user()->id == $e->idUsuario)
+            <a href="{{action('ProdutoController@criar', $e->id)}}" class="btn btn-metis-1 btn-line" data-original-title="" title="">Cadastre mais produtos!</a>
+          @endif
         @endif
+      @else
+        @if(Auth::check())
+          @if(Auth::user()->id == $e->idUsuario)
+          <a href="{{action('ProdutoController@criar', $e->id)}}" class="btn btn-metis-1 btn-line" data-original-title="" title="">Cadastre seu primeiro produto!</a>
+          @endif
         @endif
-      </table>
-      @endforeach
-      @else
-      <p>Não há comentários</p>
       @endif
-    </div>
-    <div class="body">
-      <h4>Comentar</h4>
-      @if(Auth::check())
-      <form action="{{action('ComentarioController@comentarEmEmpresa', $e->id)}}" method="post">
-        <input type="hidden"  name="_token" value="{{{ csrf_token() }}}" />
-        <input type="hidden" name="autorizar" value="0">
-        <input type="hidden" name="idUsuario" value="{{Auth::user()->id}}">
-        <input type="hidden" name="idTabela" value="{{$e->id}}">
-        <input type="hidden" name="empresa" value="1">
-
-        <div class="form-group">
-          <textarea name="comentario" rows="3" cols="60" placeholder="Digite seu comentário...">
-          </textarea>
-          <br>
-          <h5>Nota</h5>
-          <input type="number" name="nota" class="form-control pull-right">
-          <br>
-          <button type="submit" class="btn btn-success">Enviar</button>
-        </div>
-      </form>
-      @else
-      <p>Faça o <a href="{{ route('login') }}">login</a> ou <a href="{{ route('register') }}">cadastre-se</a></p>
-      @endif
+      </div>
     </div>
   </div>
-</div>
+  <div class="ui-sortable">
+    <div class="box ui-sortable-handle">
+      <header>
+        <h4 class="page-header">Comentários</h4>
+        <div class="toolbar">
+          <span class="label">label</span>
+        </div>
+      </header>
+      <div class="body">
+        @if (count($c) > 0)
+        <table id="comentarios" width="25%">
+          <tr>
+            <th></th>
+            <th></th>
+          </tr>
+          @foreach($c as $comentarios)
+          <tr>
+            <td>Nome:</td>
+            @foreach($us as $user)
+            @if ($comentarios->idUsuario == $user->id)
+            <td>{{$user->name}}</td>
+            @endif
+            @endforeach
+          </tr>
+          <tr>
+            <td>Comentário:</td>
+            <td>{{$comentarios->comentario}}</td>
+          </tr>
+          <tr>
+            <td>Nota:</td>
+            <td>{{$comentarios->nota}}</td>
+          </tr>
+          @if(Auth::check())
+          @if(Auth::user()->id == $comentarios->idUsuario)
+          <tr>
+            <td><a href="{{action('ComentarioController@editar', $comentarios->id)}}"><i class="glyphicon glyphicon-edit"></a></td>
+            <td><a href="{{action('ComentarioController@deletar', $comentarios->id)}}"> <i class="glyphicon glyphicon-trash"></a></td>
+          </tr>
+          @endif
+          @endif
+        </table>
+        @endforeach
+        @else
+        <p>Não há comentários</p>
+        @endif
+      </div>
+      <div class="body">
+        <h4>Comentar</h4>
+        @if(Auth::check())
+        <form action="{{action('ComentarioController@comentarEmEmpresa', $e->id)}}" method="post">
+          <input type="hidden"  name="_token" value="{{{ csrf_token() }}}" />
+          <input type="hidden" name="autorizar" value="0">
+          <input type="hidden" name="idUsuario" value="{{Auth::user()->id}}">
+          <input type="hidden" name="idTabela" value="{{$e->id}}">
+          <input type="hidden" name="empresa" value="1">
+
+          <div class="form-group">
+            <textarea name="comentario" rows="3" cols="60" placeholder="Digite seu comentário...">
+            </textarea>
+            <br>
+            <h5>Nota</h5>
+            <input type="number" name="nota" class="form-control pull-right">
+            <br>
+            <button type="submit" class="btn btn-success">Enviar</button>
+          </div>
+        </form>
+        @else
+        <p>Faça o <a href="{{ route('login') }}">login</a> ou <a href="{{ route('register') }}">cadastre-se</a></p>
+        @endif
+      </div>
+    </div>
+  </div>
 </div>
 </div>
 

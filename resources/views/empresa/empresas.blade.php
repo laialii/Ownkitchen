@@ -5,9 +5,6 @@
   <div class="col-lg-12">
     <!-- Advanced Tables -->
     <div class="panel panel-default">
-      <div class="panel-heading">
-
-      </div>
       <div class="panel-body">
         <div class="table-responsive">
           <div class="dataTables_wrapper form-inline" role="grid">
@@ -27,9 +24,9 @@
                   <td class="">{{$e->nome}}</td>
                   <td class=""><img src="data:image/jpg;base64,{{$e->imagem}}" class="thumbnail" width="100px"/></td>
                   <td class="sorting_1">Contato: {{$e->contato}}</td>
-                  <td class="center "><a href="{{action('EmpresaController@editar', $e->id)}}">Alterar</a></td>
-                  <td class="center "><a href="{{action('EmpresaController@deletar', $e->id)}}">Deletar</a></td>
-                  <td class="center "><a href="{{action('EmpresaController@mostrar', $e->id)}}">Visualizar</a></td>
+                  <td class="center "><a href="{{action('EmpresaController@editar', $e->id)}}"><i class="glyphicon glyphicon-edit"></a></td>
+                  <td class="center "><a href="{{action('EmpresaController@deletar', $e->id)}}"> <i class="glyphicon glyphicon-trash"></a></td>
+                  <td class="center "><a href="{{action('EmpresaController@mostrar', $e->id)}}"><i class="glyphicon glyphicon-search"></a></td>
                 </tr>
                 @endforeach
               </tbody>

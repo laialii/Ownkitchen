@@ -30,16 +30,16 @@ class ProdutoController extends Controller
       return view('produto/produtos')->with('produtos', $produtos)->with('categorias', $categorias);
     }
 
-    public function criar()
+    public function criar($id)
     {
         $categoria = Categoria::all();
-        return view('produto/add')->with('categoria', $categoria);
+        return view('produto/add')->with('categoria', $categoria)->with('idEmpresa', $id);
     }
 
     public function armazenar(ProdutoRequest $request)
     {
         Produto::create($request->all());
-        return redirect()->action('ProdutoController@index');
+        return redirect()->action('EmpresaController@mostrar', $request->input('idEmpresa'));
     }
 
     public function mostrar($id)
