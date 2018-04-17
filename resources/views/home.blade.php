@@ -16,7 +16,7 @@
 <div class="col-lg-6">
   <h1>Novos produtos</h1>
   @foreach($produtos as $p)
-  <p><a href="{{action('ProdutoController@mostrar', $e->id)}}">{{$p->titulo}}</a><br>
+  <p><a href="{{action('ProdutoController@mostrar', $p->id)}}">{{$p->titulo}}</a><br>
   @foreach($todasempresas as $e)
     @if ($p->idEmpresa == $e->id)
       <small>{{$e->nome}}</small></p>

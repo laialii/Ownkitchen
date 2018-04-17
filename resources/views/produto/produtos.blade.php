@@ -9,14 +9,16 @@
             <table class="table table-striped table-bordered table-hover dataTable no-footer" id="empresa" aria-describedby="dataTables-example_info">
               <thead>
                 <tr role="row">
-                  <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 185px;" aria-label="Rendering engine: activate to sort column ascending">Nome</th>
-                  <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 242px;">Imagem</th>
-                  <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 222px;"aria-sort="ascending">Descrição</th>
-                  <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 222px;"aria-sort="ascending">Preço</th>
-                  <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 222px;"aria-sort="ascending">Categoria</th>
-                  <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 159px;"></th>
-                  <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 114px;"></th>
-                  <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 114px;"></th>
+                  <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1">Nome</th>
+                  <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1">Imagem</th>
+                  <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1">Descrição</th>
+                  <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1">Preço</th>
+                  <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1">Categoria</th>
+                  @if(Auth::check())
+                  <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1"></th>
+                  <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1"></th>
+                  <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1"></th>
+                  @endif
                 </tr>
               </thead>
               <tbody>
@@ -31,9 +33,21 @@
                   <td>{{$c->nome}}</td>
                   @endif
                   @endforeach
-                  <td class="center"><a href="/editarproduto/{{$p->id}}"><i class="glyphicon glyphicon-edit"></a></td>
-                  <td class="center"><a href="/deletarproduto/{{$p->id}}"> <i class="glyphicon glyphicon-trash"></a></td>
-                  <td class="center"><a href="/detalhesproduto/{{$p->id}}"><i class="glyphicon glyphicon-search"></a></td>
+                  @if(Auth::check())
+                  <td class="center">
+                    <a href="{{action('ProdutoController@deletar', $p->id)}}"><i class="glyphicon glyphicon-edit"></a>
+                  </td>
+                  @endif
+                  @if(Auth::check())
+                  <td class="center">
+                    <a href="/deletarproduto/{{$p->id}}"> <i class="glyphicon glyphicon-trash"></a>
+                  </td>
+                  @endif
+                  @if(Auth::check())
+                  <td class="center">
+                    <a href="/detalhesproduto/{{$p->id}}"><i class="glyphicon glyphicon-search"></a>
+                  </td>
+                  @endif
                 </tr>
                 @endforeach
               </tbody>

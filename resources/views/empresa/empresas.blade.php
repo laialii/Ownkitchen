@@ -10,12 +10,14 @@
           <div class="dataTables_wrapper form-inline" role="grid">
             <table class="table table-striped table-bordered table-hover dataTable no-footer display" id="empresa" earia-describedby="dataTables-example_info">
               <thead>
-                <tr role="row"><th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 185px;" >Nome</th>
-                  <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 242px;" aria-label="Browser: activate to sort column ascending">Imagem</th>
-                  <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 222px;" aria-label="Platform(s): activate to sort column ascending" aria-sort="ascending">Contato</th>
-                  <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 159px;" aria-label="Engine version: activate to sort column ascending"></th>
-                  <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 159px;" aria-label="Engine version: activate to sort column ascending"></th>
-                  <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 114px;" aria-label="CSS grade: activate to sort column ascending"></th>
+                <tr role="row"><th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1">Nome</th>
+                  <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1">Imagem</th>
+                  <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1">Contato</th>
+                  @if(Auth::check())
+                  <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1"></th>
+                  <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1"></th>
+                  <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1"></th>
+                  @endif
                 </tr>
               </thead>
               <tbody>
@@ -24,9 +26,29 @@
                   <td class="">{{$e->nome}}</td>
                   <td class=""><img src="data:image/jpg;base64,{{$e->imagem}}" class="thumbnail" width="100px"/></td>
                   <td class="sorting_1">Contato: {{$e->contato}}</td>
-                  <td class="center "><a href="{{action('EmpresaController@editar', $e->id)}}"><i class="glyphicon glyphicon-edit"></a></td>
-                  <td class="center "><a href="{{action('EmpresaController@deletar', $e->id)}}"> <i class="glyphicon glyphicon-trash"></a></td>
-                  <td class="center "><a href="{{action('EmpresaController@mostrar', $e->id)}}"><i class="glyphicon glyphicon-search"></a></td>
+                  @if(Auth::check())
+                  <td class="center ">
+                    @if ($e->idUsuario == Auth::user()->id)
+                    <a href="{{action('EmpresaController@editar', $e->id)}}">
+                      <i class="glyphicon glyphicon-edit">
+                    </a>
+                    @endif
+                  </td>
+                  @endif
+                  @if(Auth::check())
+                  <td class="center ">
+                    @if ($e->idUsuario == Auth::user()->id)
+                    <a href="{{action('EmpresaController@deletar', $e->id)}}">
+                      <i class="glyphicon glyphicon-trash">
+                    </a>
+                    @endif
+                  </td>
+                  @endif
+                  <td class="center ">
+                    <a href="{{action('EmpresaController@mostrar', $e->id)}}">
+                      <i class="glyphicon glyphicon-search">
+                    </a>
+                  </td>
                 </tr>
                 @endforeach
               </tbody>

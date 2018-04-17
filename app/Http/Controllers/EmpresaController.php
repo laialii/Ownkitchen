@@ -31,8 +31,13 @@ class EmpresaController extends Controller
 
     public function empresasdousuario($id)
     {
-      $empresas = Empresa::where('idUsuario', $id)->get();
-      return view('empresa/empresas')->with('empresas', $empresas);
+      if (\Auth::id() == $id) {
+        $empresas = Empresa::where('idUsuario', $id)->get();
+        return view('empresa/empresas')->with('empresas', $empresas);
+      }
+      else {
+        return redirect()->action('EmpresaController@index');
+      }
     }
 
     public function criar()

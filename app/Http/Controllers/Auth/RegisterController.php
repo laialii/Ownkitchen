@@ -59,6 +59,8 @@ class RegisterController extends Controller
             'bairro' => 'required|string',
             'numero' => 'required|numeric',
             'idCidade' => 'required|numeric',
+            'celular' => 'required|string',
+            'telefone' => 'required|string',
         ]);
     }
 
@@ -81,6 +83,8 @@ class RegisterController extends Controller
             'numero' => $data['numero'],
             'imagem' => $data['imagem'],
             'idCidade' => $data['idCidade'],
+            'celular' => $data['celular'],
+            'telefone' => $data['telefone'],
         ]);
     }
 }

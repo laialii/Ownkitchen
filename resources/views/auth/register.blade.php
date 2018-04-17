@@ -111,6 +111,26 @@
             @endif
           </div>
 
+          <div class="form-group{{ $errors->has('telefone') ? ' has-error' : '' }}">
+            <input type="text" class="form-control" name="telefone" value="{{ old('telefone') }}" placeholder="Telefone" required autofocus>
+
+            @if ($errors->has('telefone'))
+            <span class="help-block">
+              <strong>{{ $errors->first('telefone') }}</strong>
+            </span>
+            @endif
+          </div>
+
+          <div class="form-group{{ $errors->has('celular') ? ' has-error' : '' }}">
+            <input type="text" class="form-control" name="celular" value="{{ old('celular') }}" placeholder="Celular" required autofocus>
+
+            @if ($errors->has('celular'))
+            <span class="help-block">
+              <strong>{{ $errors->first('celular') }}</strong>
+            </span>
+            @endif
+          </div>
+
           <div class="form-group{{ $errors->has('rua') ? ' has-error' : '' }}">
             <input type="text" class="form-control" name="rua" value="{{ old('rua') }}" placeholder="Rua" required autofocus>
 
