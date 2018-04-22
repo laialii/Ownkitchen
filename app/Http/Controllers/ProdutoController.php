@@ -38,6 +38,11 @@ class ProdutoController extends Controller
 
     public function armazenar(ProdutoRequest $request)
     {
+        $this->validate{$request, ['titulo' => 'required',
+          'descricao' => 'required',
+          'preco' => 'required|numeric',
+          'idCategoria' => 'required',
+          'imagem' => 'image']}
         Produto::create($request->all());
         return redirect()->action('EmpresaController@mostrar', $request->input('idEmpresa'));
     }
@@ -45,6 +50,7 @@ class ProdutoController extends Controller
     public function mostrar($id)
     {
       $produto = Produto::find($id);
+      $arquivo = Storage::get($produto->imagem);
       $empresa = Empresa::find($produto->idEmpresa);
       $categoria = Categoria::all();
       $user = User::all();

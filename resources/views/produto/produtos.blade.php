@@ -43,11 +43,9 @@
                     <a href="/deletarproduto/{{$p->id}}"> <i class="glyphicon glyphicon-trash"></i></a>
                   </td>
                   @endif
-                  @if(Auth::check())
                   <td class="center">
                     <a href="/detalhesproduto/{{$p->id}}"><i class="glyphicon glyphicon-search"></i></a>
                   </td>
-                  @endif
                 </tr>
                 @endforeach
               </tbody>
