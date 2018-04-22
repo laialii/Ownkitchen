@@ -46,8 +46,8 @@
           @if(Auth::check())
           @if(Auth::user()->id == $e->idUsuario)
           <tr>
-            <td><a href="{{action('ProdutoController@editar', $p->id)}}"><i class="glyphicon glyphicon-edit"></a></td>
-            <td><a href="{{action('ProdutoController@deletar', $p->id)}}"><i class="glyphicon glyphicon-trash"></a></td>
+            <td><a href="{{action('ProdutoController@editar', $p->id)}}"><i class="glyphicon glyphicon-edit"></i></a></td>
+            <td><a href="{{action('ProdutoController@deletar', $p->id)}}"><i class="glyphicon glyphicon-trash"></i></a></td>
           </tr>
           @endif
           @endif
@@ -91,8 +91,8 @@
         @if(Auth::check())
         @if(Auth::user()->id == $comentarios->idUsuario)
         <tr>
-          <td><a href="{{action('ComentarioController@editar', $comentarios->id)}}"><i class="glyphicon glyphicon-edit"></a></td>
-          <td><a href="{{action('ComentarioController@deletar', $comentarios->id)}}"> <i class="glyphicon glyphicon-trash"></a></td>
+          <td><a href="{{action('ComentarioController@editar', $comentarios->id)}}"><i class="glyphicon glyphicon-edit"></i></a></td>
+          <td><a href="{{action('ComentarioController@deletar', $comentarios->id)}}"> <i class="glyphicon glyphicon-trash"></i></a></td>
         </tr>
         @endif
         @endif

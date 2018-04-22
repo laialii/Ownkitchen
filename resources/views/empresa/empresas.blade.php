@@ -16,8 +16,8 @@
                   @if(Auth::check())
                   <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1"></th>
                   <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1"></th>
-                  <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1"></th>
                   @endif
+                  <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1"></th>
                 </tr>
               </thead>
               <tbody>
@@ -30,7 +30,7 @@
                   <td class="center ">
                     @if ($e->idUsuario == Auth::user()->id)
                     <a href="{{action('EmpresaController@editar', $e->id)}}">
-                      <i class="glyphicon glyphicon-edit">
+                      <i class="glyphicon glyphicon-edit"></i>
                     </a>
                     @endif
                   </td>
@@ -39,14 +39,14 @@
                   <td class="center ">
                     @if ($e->idUsuario == Auth::user()->id)
                     <a href="{{action('EmpresaController@deletar', $e->id)}}">
-                      <i class="glyphicon glyphicon-trash">
+                      <i class="glyphicon glyphicon-trash"></i>
                     </a>
                     @endif
                   </td>
                   @endif
                   <td class="center ">
                     <a href="{{action('EmpresaController@mostrar', $e->id)}}">
-                      <i class="glyphicon glyphicon-search">
+                      <i class="glyphicon glyphicon-search"></i>
                     </a>
                   </td>
                 </tr>

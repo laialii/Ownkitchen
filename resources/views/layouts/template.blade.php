@@ -97,17 +97,17 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <!-- .nav -->
           <ul class="nav navbar-nav">
-            <li><a href="{{action('EmpresaController@criar')}}">Nova empresa</a></li>
-            @if(Auth::check())
-            <li><a href="{{action('EmpresaController@empresasdousuario', Auth::id())}}">Suas empresas</a></li>
-            @endif
+            <li><a href="{{action('ProdutoController@index')}}">Produtos</a></li>
             <li class='dropdown '>
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                Listagem <b class="caret"></b>
+                Empresas <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
+                <li><a href="{{action('EmpresaController@criar')}}">Nova empresa</a></li>
                 <li><a href="{{action('EmpresaController@index')}}">Empresas</a></li>
-                <li><a href="{{action('ProdutoController@index')}}">Produtos</a></li>
+                @if(Auth::check())
+                <li><a href="{{action('EmpresaController@empresasdousuario', Auth::id())}}">Suas empresas</a></li>
+                @endif
               </ul>
             </li>
           </ul>
