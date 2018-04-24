@@ -20,7 +20,7 @@ class CreateProdutosTable extends Migration
             $table->string('descricao');
             $table->double('preco');
             $table->integer('idEmpresa');
-            $table->binary('imagem');
+            $table->string('imagem');
             $table->integer('idCategoria');
         });
     }

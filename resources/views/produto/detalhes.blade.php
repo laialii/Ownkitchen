@@ -16,8 +16,7 @@
             <th></th>
           </tr>
           <tr>
-            <td><strong>Imagem:</strong></td>
-            <td>{{$p->imagem}}</td>
+            <td><img src='{{$a}}' width="100px"/></td>
           </tr>
           <tr>
             <td><strong>Titulo</strong></td>

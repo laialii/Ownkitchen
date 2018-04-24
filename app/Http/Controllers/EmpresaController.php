@@ -7,6 +7,7 @@ use App\Empresa;
 use App\User;
 use App\Comentario;
 use App\Produto;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmpresaRequest;
 use Illuminate\Support\Facades\Input;
@@ -17,53 +18,66 @@ use Illuminate\Support\Facades\Validator;
 class EmpresaController extends Controller
 {
 
-    public function __construct()
-    {
-      $this->middleware('auth',
-                        ['only' => ['criar', 'armazenar', 'editar', 'deletar']]);
-    }
+  public function __construct()
+  {
+    $this->middleware('auth',
+    ['only' => ['criar', 'armazenar', 'editar', 'deletar']]);
+  }
 
-    public function index()
-    {
-      $empresas = Empresa::all();
+  public function index()
+  {
+    $empresas = Empresa::all();
+    return view('empresa/empresas')->with('empresas', $empresas);
+  }
+
+  public function empresasdousuario($id)
+  {
+    if (\Auth::id() == $id) {
+      $empresas = Empresa::where('idUsuario', $id)->get();
       return view('empresa/empresas')->with('empresas', $empresas);
     }
+    else {
+      return redirect()->action('EmpresaController@index');
+    }
+  }
 
-    public function empresasdousuario($id)
-    {
-      if (\Auth::id() == $id) {
-        $empresas = Empresa::where('idUsuario', $id)->get();
-        return view('empresa/empresas')->with('empresas', $empresas);
-      }
-      else {
-        return redirect()->action('EmpresaController@index');
-      }
+  public function criar()
+  {
+    return view('empresa/add');
+  }
+
+  public function armazenar(EmpresaRequest $request)
+  {
+
+    $empresa = new Empresa();
+    $empresa->nome = $request->nome;
+    $empresa->imagem = $request->imagem;
+    $empresa->contato = $request->contato;
+    $empresa->idUsuario = $request->idUsuario;
+
+    if ($request->hasFile('imagem')) {
+      $empresa->imagem = $request->imagem->getClientOriginalName();
+      $request->imagem->storeAs('public/imagem', $empresa->imagem);
     }
 
-    public function criar()
-    {
-        return view('empresa/add');
-    }
+    $empresa->save();
+    return redirect()->action('EmpresaController@index')
+    ->withInput(Request::only('nome'));
+  }
 
-    public function armazenar(EmpresaRequest $request)
-    {
-        Empresa::create($request->all());
-        return redirect()->action('EmpresaController@index')
-                        ->withInput(Request::only('nome'));
-    }
-
-    public function mostrar($id)
-    {
-      $empresa = Empresa::find($id);
-      $produtos = Produto::where('idEmpresa', $id)->get();
-      $user = User::find($empresa->idUsuario);
-      $users = User::all();
-      $comentarios = Comentario::where([
-                  ['empresa', '=', 1],
-                  ['idTabela', '=', $id],
-                  ['autorizar', '=', 1]
-                ])->get();
-      return view('empresa/detalhes', ['e' => $empresa,'u'=>$user,'us'=>$users,'c'=>$comentarios,'p'=>$produtos]);
+  public function mostrar($id)
+  {
+    $empresa = Empresa::find($id);
+    $arquivo = Storage::url('imagem/'.$empresa->imagem);
+    $produtos = Produto::where('idEmpresa', $id)->get();
+    $user = User::find($empresa->idUsuario);
+    $users = User::all();
+    $comentarios = Comentario::where([
+      ['empresa', '=', 1],
+      ['idTabela', '=', $id],
+      ['autorizar', '=', 1]
+      ])->get();
+      return view('empresa/detalhes', ['e' => $empresa,'u'=>$user,'us'=>$users,'c'=>$comentarios,'p'=>$produtos,'a'=>$arquivo]);
     }
 
     public function editar($id)
@@ -74,15 +88,15 @@ class EmpresaController extends Controller
 
     public function atualizar(Request $request, $id)
     {
-        $novosdados = Request::all();
-        $empresa = new Empresa();
-        $empresa = Empresa::find($novosdados['id']);
-        $empresa->nome = $novosdados['nome'];
-        $empresa->imagem = $novosdados['imagem'];
-        $empresa->contato = $novosdados['contato'];
+      $novosdados = Request::all();
+      $empresa = new Empresa();
+      $empresa = Empresa::find($novosdados['id']);
+      $empresa->nome = $novosdados['nome'];
+      $empresa->imagem = $novosdados['imagem'];
+      $empresa->contato = $novosdados['contato'];
 
-        $empresa->save();
-        return redirect()->action('EmpresaController@index');
+      $empresa->save();
+      return redirect()->action('EmpresaController@index');
     }
 
     public function deletar($id)
@@ -108,4 +122,4 @@ class EmpresaController extends Controller
       $posts = Posts::find($id);
 
     }
-}
+  }

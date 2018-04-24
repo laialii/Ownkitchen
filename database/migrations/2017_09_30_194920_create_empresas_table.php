@@ -17,7 +17,7 @@ class CreateEmpresasTable extends Migration
             $table->increments('id');
             $table->string('nome');
             $table->string('contato');
-            $table->binary('imagem');
+            $table->string('imagem');
             $table->integer('idUsuario');
             $table->timestamps();
 

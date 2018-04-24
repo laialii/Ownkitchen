@@ -12,9 +12,9 @@
       </ul>
     @endcomponent
   @endif
-  <form action="/addempresa" method="post">
+  <form action="/addempresa" method="post" enctype="multipart/form-data" >
     <input type="hidden"  name="_token" value="{{{ csrf_token() }}}" />
-
+ {!! csrf_token() !!}
     <input type="hidden"  name="idUsuario" value="{{Auth::user()->id}}" />
 
     <div class="form-group">
