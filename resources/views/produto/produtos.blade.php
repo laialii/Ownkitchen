@@ -25,7 +25,8 @@
                 @foreach($produtos as $p)
                 <tr class="gradeU odd">
                   <td class="">{{$p->titulo}}</td>
-                  <td class=""><img src="data:image/jpg;base64,{{$p->imagem}}" class="thumbnail" width="100px"/></td>
+                  <input type="hidden" name="" value="{{$imagem = Storage::url('imagem/'.$p->imagem)}}">
+                  <td class=""><img src="{{$imagem}}" class="thumbnail" width="50px"/></td>
                   <td class="sorting_1">{{$p->descricao}}</td>
                   <td class="center ">{{$p->preco}}</td>
                   @foreach($categorias as $c)

@@ -24,7 +24,12 @@
                 @foreach($empresas as $e)
                 <tr class="gradeU odd">
                   <td class="">{{$e->nome}}</td>
-                  <td class=""><img src="data:image/jpg;base64,{{$e->imagem}}" class="thumbnail" width="100px"/></td>
+                  <input type="hidden" name="" value="{{$imagem = Storage::url('imagem/'.$e->imagem)}}">
+                  @if ($imagem !== NULL)
+                  <td class=""><img src="{{$imagem}}" class="thumbnail" width="50px"></td>
+                  @else
+                  <td class=""><img src="{{Storage::url('imagem/no-image.png')}}" class="thumbnail" width="50px"></td>
+                  @endif
                   <td class="sorting_1">Contato: {{$e->contato}}</td>
                   @if(Auth::check())
                   <td class="center ">

@@ -16,24 +16,18 @@
       <table width="25%">
         <tr>
           <th></th>
-          <th></th>
         </tr>
         <tr>
-          <td><img src='{{$a}}' width="100px"/></td>
+          <td><img src='{{$a}}' width="100px"  class="thumbnail" /></td>
         </tr>
         <tr>
-          <td><strong>Nome</strong></td>
-          <td>{{$e->nome}}</td>
-        </tr>
-        <tr>
-          <td><strong>Contato</strong></td>
-          <td>{{$e->contato}}</td>
+          <td><strong>Contato: </strong>{{$e->contato}}</td>
         </tr>
         @if(Auth::check())
         @if(Auth::user()->id == $e->idUsuario)
         <tr>
-          <td><a href="{{action('EmpresaController@editar', $e->id)}}"> <i class="glyphicon glyphicon-edit"></i></a></td>
-          <td><a href="{{action('EmpresaController@deletar', $e->id)}}"> <i class="glyphicon glyphicon-trash"></i></a></td>
+          <td><a href="{{action('EmpresaController@editar', $e->id)}}"> <i class="glyphicon glyphicon-edit"></i></a>
+            <a href="{{action('EmpresaController@deletar', $e->id)}}"> <i class="glyphicon glyphicon-trash"></i></a></td>
         </tr>
         @endif
         @endif
@@ -54,6 +48,7 @@
       <!--  -->
       @if (count($p) > 0)
         @foreach($p as $produtos)
+        <img src="{{Storage::url('imagem/'.$produtos->imagem)}}" class="thumbnail" width="100px">
         <a href="{{action('ProdutoController@mostrar', $produtos->id)}}">{{$produtos->titulo}} <i class="glyphicon glyphicon-search"></i></a>
           @if(Auth::check())
           @if(Auth::user()->id == $e->idUsuario)
