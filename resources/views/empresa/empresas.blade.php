@@ -25,7 +25,7 @@
                 <tr class="gradeU odd">
                   <td class="">{{$e->nome}}</td>
                   <input type="hidden" name="" value="{{$imagem = Storage::url('imagem/'.$e->imagem)}}">
-                  @if ($imagem !== NULL)
+                  @if ($e->imagem !== NULL)
                   <td class=""><img src="{{$imagem}}" class="thumbnail" width="50px"></td>
                   @else
                   <td class=""><img src="{{Storage::url('imagem/no-image.png')}}" class="thumbnail" width="50px"></td>

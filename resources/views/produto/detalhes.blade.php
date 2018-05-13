@@ -16,7 +16,11 @@
             <th></th>
           </tr>
           <tr>
+            @if ($p->imagem !== NULL)
             <td><img src='{{$a}}' width="100px" class="thumbnail"/></td>
+            @else
+            <td class=""><img src="{{Storage::url('imagem/no-image.png')}}" class="thumbnail" width="50px"></td>
+            @endif
           </tr>
           <tr>
             <td><strong>Titulo</strong></td>

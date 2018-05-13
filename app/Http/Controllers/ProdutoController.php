@@ -27,8 +27,10 @@ class ProdutoController extends Controller
   public function index()
   {
     $produtos = Produto::all();
+    $empresas = Empresa::all();
     $categorias = Categoria::all();
-    return view('produto/produtos')->with('produtos', $produtos)->with('categorias', $categorias);
+
+    return view('produto/produtos')->with('produtos', $produtos)->with('categorias', $categorias)->with('empresas', $empresas);
   }
 
   public function criar($id)

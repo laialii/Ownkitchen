@@ -20,11 +20,13 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->date('nascimento');
             $table->string('cpf');
+            $table->string('cep');
             $table->string('rua');
             $table->string('bairro');
             $table->integer('numero');
-            $table->binary('imagem');
-            $table->integer('idCidade');
+            $table->string ('imagem');
+            $table->string ('cidade');
+            $table->string ('estado');
             $table->rememberToken();
             $table->timestamps();
         });
