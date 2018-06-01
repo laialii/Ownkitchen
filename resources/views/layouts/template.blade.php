@@ -14,23 +14,23 @@
   <meta name="msapplication-TileColor" content="#5bc0de" />
   <meta name="msapplication-TileImage" content="assets/img/metis-tile.png" />
   <!-- Bootstrap -->
-  <link rel="stylesheet" href="../assets/lib/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.css">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../assets/lib/iconic/font/css/open-iconic-bootstrap.css">
+  <link rel="stylesheet" href="/assets/lib/iconic/font/css/open-iconic-bootstrap.css">
 
   <!-- Metis core stylesheet -->
-  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/main.css">
 
   <!-- metisMenu stylesheet -->
-  <link rel="stylesheet" href="../assets/lib/metismenu/metisMenu.css">
+  <link rel="stylesheet" href="/assets/lib/metismenu/metisMenu.css">
 
   <!-- onoffcanvas stylesheet -->
-  <link rel="stylesheet" href="../assets/lib/onoffcanvas/onoffcanvas.css">
+  <link rel="stylesheet" href="/assets/lib/onoffcanvas/onoffcanvas.css">
 
   <!-- animate.css stylesheet -->
-  <link rel="stylesheet" href="../assets/lib/animate.css/animate.css">
-  <link rel="stylesheet/less" type="text/css" href="../assets/less/theme.less">
+  <link rel="stylesheet" href="/assets/lib/animate.css/animate.css">
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/theme.less">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script>
 
 
@@ -42,6 +42,7 @@
       <!-- .navbar -->
       <header class="head">
         <div class="search-bar">
+          <!--
           <form class="main-search" action="">
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Pesquisar...">
@@ -51,13 +52,13 @@
                 </button>
               </span>
             </div>
-          </form>
+          </form>-->
           <!-- /.main-search -->
         </div>
         <!-- /.search-bar -->
         <div class="main-bar">
 
-          <a href="/home" class="navbar-brand"><img src="../assets/img/logo.png" alt=""></a>
+          <a href="/home" class="navbar-brand"><img src="/assets/img/logo.png" alt=""></a>
 
         </div>
         <!-- /.main-bar -->
@@ -67,10 +68,6 @@
         <div class="container-fluid">
           <div class="topnav">
             <div class="btn-group">
-              <a data-placement="bottom" data-original-title="Fullscreen" data-toggle="tooltip"
-              class="btn btn-default btn-sm" id="toggleFullScreen">
-              <i class="glyphicon glyphicon-fullscreen"></i>
-            </a>
             @if(!Auth::check())
             <div class="btn-group">
               <a href="{{ route('login') }}" data-toggle="tooltip" data-original-title="Entrar" data-placement="bottom"
@@ -79,6 +76,11 @@
               </a>
             </div>
             @else
+            <div class="btn-group">
+              <a href="{{action('HomeController@perfil')}}" class="btn btn-default btn-sm">
+                  <i class="glyphicon glyphicon-user"></i>
+              </a>
+            </div>
             <div class="btn-group">
               <a href="{{ route('logout') }}"
                   onclick="event.preventDefault();
@@ -143,17 +145,83 @@
 </footer>
 <!-- /#footer -->
 <!--Bootstrap -->
-<script src="../assets/lib/bootstrap/js/bootstrap.js"></script>
+<script src="/assets/lib/bootstrap/js/bootstrap.js"></script>
 <!-- MetisMenu -->
-<script src="../assets/lib/metismenu/metisMenu.js"></script>
+<script src="/assets/lib/metismenu/metisMenu.js"></script>
 <!-- Screenfull -->
-<script src="../assets/lib/screenfull/screenfull.js"></script>
+<script src="/assets/lib/screenfull/screenfull.js"></script>
 <!--jQuery -->
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
 <script src="{{ asset('js/jquery.dataTables.js') }}"></script>
 
+  <!--CEP API-->
+  <script src="js/jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript">
+jQuery(function($){
+   $("input[name='cep']").change(function(){
+      var cep_code = $(this).val();
+      if( cep_code.length <= 0 ) return;
+      $.get("http://apps.widenet.com.br/busca-cep/api/cep.json", { code: cep_code },
+         function(result){
+            if( result.status!=1 ){
+               alert(result.message || "Houve um erro desconhecido");
+               return;
+            }
+            var end = result.address;
+            var end_array = end.split("-");
+            var siglas = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
+            var nomeestados = ['Acre','Alagoas','Amapá','Amazonas','Bahia','Ceará','Distrito Federal','Espírito Santo','Goiás','Maranhão','Mato Grosso','Mato Grosso do Sul','Minas Gerais','Pará','Paraíba','Paraná','Pernambuco','Piauí','Rio de Janeiro','Rio Grande do Norte','Rio Grande do Sul','Rondônia','Roraima','Santa Catarina','São Paulo','Sergipe','Tocantins',]
+            var indice = siglas.indexOf(result.state);
+            $("input[name='cep']").val( result.code );
+            $("input[name='estado']").val( result.state );
+            $("input[name='cidade']").val( result.city );
+            $("input[name='bairro']").val( result.district );
+            $("input[name='endereco']").val( end_array[0] );
+            $("input[name='estado']").val( nomeestados[indice] );
+
+
+
+         });
+   });
+});
+</script>
+
 @yield('datatable')
+<script>
+$(document).ready(function(){
+  $('#empresa').DataTable(
+    {
+      "language": {
+        "sEmptyTable": "Nenhum registro encontrado",
+        "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+        "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+        "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+        "sInfoPostFix": "",
+        "sInfoThousands": ".",
+        "sLengthMenu": "_MENU_ resultados por página",
+        "sLoadingRecords": "Carregando...",
+        "sProcessing": "Processando...",
+        "sZeroRecords": "Nenhum registro encontrado",
+        "sSearch": "Pesquisar",
+        "oPaginate": {
+          "sNext": "Próximo",
+          "sPrevious": "Anterior",
+          "sFirst": "Primeiro",
+          "sLast": "Último"
+        },
+        "oAria": {
+          "sSortAscending": ": Ordenar colunas de forma ascendente",
+          "sSortDescending": ": Ordenar colunas de forma descendente"
+        }
+      }
+    }
+
+  );
+});
+</script>
+
 </body>
 
 </html>

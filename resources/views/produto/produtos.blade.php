@@ -18,18 +18,17 @@
                 <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1"></th>
                 <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1"></th>
                 @endif
-                <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1"></th>
               </tr>
             </thead>
             <tbody>
               @foreach($produtos as $p)
               <tr class="gradeU odd">
-                <td class="">{{$p->titulo}}</td>
+                <td class=""><a href="{{action('ProdutoController@mostrar', $p->id)}}">{{$p->titulo}}</a></td>
                 <input type="hidden" name="" value="{{$imagem = Storage::url('imagem/'.$p->imagem)}}">
                 @if ($p->imagem !== NULL)
-                <td class=""><img src="{{$imagem}}" class="thumbnail" width="50px"></td>
+                <td class=""><a href="{{action('ProdutoController@mostrar', $p->id)}}"><img src="{{$imagem}}" class="thumbnail" width="50px"></a></td>
                 @else
-                <td class=""><img src="{{Storage::url('imagem/no-image.png')}}" class="thumbnail" width="50px"></td>
+                <td class=""><a href="{{action('ProdutoController@mostrar', $p->id)}}"><img src="{{Storage::url('imagem/no-image.png')}}" class="thumbnail" width="50px"></a></td>
                 @endif
                 <td class="sorting_1">{{$p->descricao}}</td>
                 <td class="center ">{{$p->preco}}</td>
@@ -58,11 +57,6 @@
                   @endforeach
                 </td>
                 @endif
-                <td class="center">
-                  <a href="/detalhesproduto/{{$p->id}}">
-                    <i class="glyphicon glyphicon-search"></i>
-                  </a>
-                </td>
               </tr>
               @endforeach
             </tbody>

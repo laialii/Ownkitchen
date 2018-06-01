@@ -17,18 +17,17 @@
                   <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1"></th>
                   <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1"></th>
                   @endif
-                  <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1"></th>
                 </tr>
               </thead>
               <tbody>
                 @foreach($empresas as $e)
                 <tr class="gradeU odd">
-                  <td class="">{{$e->nome}}</td>
+                  <td class=""><a href="{{action('EmpresaController@mostrar', $e->id)}}">{{$e->nome}}</a></td>
                   <input type="hidden" name="" value="{{$imagem = Storage::url('imagem/'.$e->imagem)}}">
                   @if ($e->imagem !== NULL)
-                  <td class=""><img src="{{$imagem}}" class="thumbnail" width="50px"></td>
+                  <td class=""><a href="{{action('EmpresaController@mostrar', $e->id)}}"><img src="{{$imagem}}" class="thumbnail" width="50px"></a></td>
                   @else
-                  <td class=""><img src="{{Storage::url('imagem/no-image.png')}}" class="thumbnail" width="50px"></td>
+                  <td class=""><a href="{{action('EmpresaController@mostrar', $e->id)}}"><img src="{{Storage::url('imagem/no-image.png')}}" class="thumbnail" width="50px"></a></td>
                   @endif
                   <td class="sorting_1">Contato: {{$e->contato}}</td>
                   @if(Auth::check())
@@ -49,11 +48,6 @@
                     @endif
                   </td>
                   @endif
-                  <td class="center ">
-                    <a href="{{action('EmpresaController@mostrar', $e->id)}}">
-                      <i class="glyphicon glyphicon-search"></i>
-                    </a>
-                  </td>
                 </tr>
                 @endforeach
               </tbody>

@@ -10,17 +10,17 @@
 
   <div class="form-group">
     <label>Nome</label>
-    <input name="nome" class="form-control pull-right">
+    <input name="nome" class="form-control pull-right" value="{{$e->nome}}">
   </div>
 
   <div class="form-group">
     <label>Contato</label>
-    <input name="contato" class="form-control pull-right">
+    <input name="contato" class="form-control pull-right" value="{{$e->contato}}">
   </div>
 
   <div class="form-group">
     <label>Imagem</label>
-    <input type="file" name="imagem" class="form-control pull-right">
+    <input type="file" name="imagem" class="form-control pull-right"  value="{{$e->imagem}}">
   </div>
   <br>
 <br>

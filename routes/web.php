@@ -7,6 +7,9 @@ Route::get('/', function () {
 Route::get('home', 'HomeController@index');
 
 Auth::routes();
+Route::get('perfil', 'HomeController@perfil')->middleware('auth.basic');
+Route::get('perfil/editar/{id}', 'HomeController@editar')->middleware('auth.basic')->where('id','[0-9]+');
+Route::post('perfil/atualizar/{id}', 'HomeController@atualizar')->middleware('auth.basic')->where('id','[0-9]+');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('empresas', 'EmpresaController@index');
