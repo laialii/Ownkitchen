@@ -246,39 +246,9 @@
   <!--Bootstrap -->
   <script src="assets/lib/bootstrap/js/bootstrap.js"></script>
 
-    <!--CEP API-->
-    <script src="js/jquery-3.3.1.min.js"></script>
-
-  <script type="text/javascript">
-  jQuery(function($){
-     $("input[name='cep']").change(function(){
-        var cep_code = $(this).val();
-        if( cep_code.length <= 0 ) return;
-        $.get("http://apps.widenet.com.br/busca-cep/api/cep.json", { code: cep_code },
-           function(result){
-              if( result.status!=1 ){
-                 alert(result.message || "Houve um erro desconhecido");
-                 return;
-              }
-              var end = result.address;
-              var end_array = end.split("-");
-              var siglas = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
-              var nomeestados = ['Acre','Alagoas','Amapá','Amazonas','Bahia','Ceará','Distrito Federal','Espírito Santo','Goiás','Maranhão','Mato Grosso','Mato Grosso do Sul','Minas Gerais','Pará','Paraíba','Paraná','Pernambuco','Piauí','Rio de Janeiro','Rio Grande do Norte','Rio Grande do Sul','Rondônia','Roraima','Santa Catarina','São Paulo','Sergipe','Tocantins',]
-              var indice = siglas.indexOf(result.state);
-              $("input[name='cep']").val( result.code );
-              $("input[name='estado']").val( result.state );
-              $("input[name='cidade']").val( result.city );
-              $("input[name='bairro']").val( result.district );
-              $("input[name='endereco']").val( end_array[0] );
-              $("input[name='estado']").val( nomeestados[indice] );
-
-
-
-           });
-     });
-  });
-  </script>
-
+  <!--CEP API-->
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/cep-api.js"></script>
 
   <script type="text/javascript">
   (function($) {

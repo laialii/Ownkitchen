@@ -6,7 +6,7 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <div class="table-responsive">
-          <table class="table table-striped table-bordered table-hover dataTable no-footer" id="empresa" aria-describedby="dataTables-example_info">
+          <table class="table table-striped table-bordered table-hover dataTable no-footer" id="produto" aria-describedby="dataTables-example_info">
             <thead>
               <tr role="row">
                 <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1">Nome</th>
@@ -66,14 +66,13 @@
     </div>
   </div>
 </div>
-
-<script src="{{ asset('js/app.js') }}"></script>
-<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+@endsection
+@section('datatable')
 <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
 
 <script>
 $(document).ready(function(){
-  $('#empresa').DataTable(
+  $('#produto').DataTable(
     {
       "language": {
         "sEmptyTable": "Nenhum registro encontrado",
@@ -102,5 +101,4 @@ $(document).ready(function(){
   );
 });
 </script>
-
 @endsection

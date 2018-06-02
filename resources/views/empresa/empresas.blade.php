@@ -63,6 +63,7 @@
 @endsection
 
 @section('datatable')
+<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
 <script>
 $(document).ready(function(){
   $('#empresa').DataTable(
@@ -91,9 +92,7 @@ $(document).ready(function(){
         }
       }
     }
-
   );
 });
 </script>
-
 @endsection
