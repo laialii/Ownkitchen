@@ -48,7 +48,7 @@
               <input type="text" class="form-control" placeholder="Pesquisar...">
               <span class="input-group-btn">
                 <button class="btn btn-primary btn-sm text-muted" type="button">
-                  <i class="fa fa-search"></i>
+                  <i class="glyphicon glyphicon-search"></i>
                 </button>
               </span>
             </div>
@@ -58,7 +58,7 @@
         <!-- /.search-bar -->
         <div class="main-bar">
 
-          <a href="/home" class="navbar-brand"><img src="/assets/img/logo.png" alt=""></a>
+          <a href="/home" class="navbar-brand"><img src="/assets/img/logobranco.png" width="60%"></a>
 
         </div>
         <!-- /.main-bar -->
@@ -99,7 +99,16 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <!-- .nav -->
           <ul class="nav navbar-nav">
-            <li><a href="{{action('ProdutoController@index')}}">Produtos</a></li>
+            <li>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Produtos <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="{{action('ProdutoController@index')}}" >Produtos</a></li>
+              @if(Auth::check())
+              <li><a href="{{action('ProdutoController@produtosdousuario', Auth::id())}}">Seus produtos</a></li>
+              @endif
+            </ul>
             <li class='dropdown '>
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Empresas <b class="caret"></b>
@@ -122,12 +131,10 @@
 
   </div>
   <div id="content">
-    <div class="outer">
       <div class="inner bg-light lter">
           @yield('conteudo')
       </div>
       <!-- /.inner -->
-    </div>
     <!-- /.outer -->
   </div>
   <!-- /#content -->
@@ -141,7 +148,7 @@
 </div>
 <!-- /#wrap -->
 <footer class="Footer bg-red dker">
-  <p>2017 &copy; Feito por Laiali</p>
+  <p>2018 &copy; Feito por Laiali</p>
 </footer>
 </body>
 <!-- /#footer -->

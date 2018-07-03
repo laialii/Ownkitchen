@@ -33,6 +33,15 @@ class ProdutoController extends Controller
     return view('produto/produtos')->with('produtos', $produtos)->with('categorias', $categorias)->with('empresas', $empresas);
   }
 
+  public function produtosdousuario($id)
+  {
+    $produtos = Produto::all();
+    $empresas = Empresa::all();
+    $categorias = Categoria::all();
+
+    return view('produto/produtosdousuario')->with('produtos', $produtos)->with('categorias', $categorias)->with('empresas', $empresas);
+  }
+
   public function criar($id)
   {
     $categoria = Categoria::all();

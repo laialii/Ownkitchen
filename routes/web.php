@@ -23,6 +23,7 @@ Route::post('atualizarempresa/{id}', 'EmpresaController@atualizar');
 Route::get('deletarempresa/{id}', 'EmpresaController@deletar');
 
 Route::get('produtos', 'ProdutoController@index');
+Route::get('produtos/{id}', 'ProdutoController@produtosdousuario')->where('id','[0-9]+');
 Route::get('addproduto/{id}', 'ProdutoController@criar')->where('id','[0-9]+');
 Route::post('addproduto', 'ProdutoController@armazenar');
 Route::get('editarproduto/{id}', 'ProdutoController@editar');

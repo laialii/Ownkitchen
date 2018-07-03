@@ -14,7 +14,6 @@
   @endif
   <form action="{{action('ProdutoController@armazenar')}}" enctype="multipart/form-data" method="post" >
     <input type="hidden"  name="_token" value="{{ csrf_token() }}" />
- {!! csrf_token() !!}
     <input type="hidden" name="idEmpresa" value="{{$idEmpresa}}" />
 
     <div class="form-group">

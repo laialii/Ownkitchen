@@ -87,14 +87,9 @@
           <td>Comentário:</td>
           <td>{{$comentarios->comentario}}</td>
         </tr>
-        <tr>
-          <td>Nota:</td>
-          <td>{{$comentarios->nota}}</td>
-        </tr>
         @if(Auth::check())
         @if(Auth::user()->id == $comentarios->idUsuario)
         <tr>
-          <td><a href="{{action('ComentarioController@editar', $comentarios->id)}}"><i class="glyphicon glyphicon-edit"></i></a></td>
           <td><a href="{{action('ComentarioController@deletar', $comentarios->id)}}"> <i class="glyphicon glyphicon-trash"></i></a></td>
         </tr>
         @endif
@@ -119,8 +114,7 @@
           <textarea name="comentario" rows="3" cols="60" placeholder="Digite seu comentário...">
           </textarea>
           <br>
-          <h5>Nota</h5>
-          <input type="number" name="nota" class="form-control pull-right">
+          <input type="hidden" name="nota" value="0" class="form-control pull-right">
           <br>
           <button type="submit" class="btn btn-success">Enviar</button>
         </div>
@@ -169,4 +163,5 @@ $(document).ready(function(){
   );
 });
 </script>
+<script src="{{asset('/js/like.js')}}"></script>
 @endsection

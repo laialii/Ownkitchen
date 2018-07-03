@@ -1,6 +1,6 @@
 @extends('.../layouts/template')
 @section('conteudo')
-<h1 class="page-header">Produtos</h1>
+<h1 class="page-header">Produto</h1>
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-default">
@@ -14,14 +14,15 @@
                 <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1">Descrição</th>
                 <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1">Preço</th>
                 <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1">Categoria</th>
-                @if(Auth::check())
                 <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1"></th>
                 <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1"></th>
-                @endif
               </tr>
             </thead>
             <tbody>
+            @if(Auth::check())
               @foreach($produtos as $p)
+                @foreach($empresas as $e)
+                @if($e->id == $p->idEmpresa && $e->idUsuario == Auth::user()->id)
               <tr class="gradeU odd">
                 <td class=""><a href="{{action('ProdutoController@mostrar', $p->id)}}">{{$p->titulo}}</a></td>
                 <input type="hidden" name="" value="{{$imagem = Storage::url('imagem/'.$p->imagem)}}">
@@ -37,28 +38,21 @@
                 <td>{{$c->nome}}</td>
                 @endif
                 @endforeach
-                @if(Auth::check())
                 <td class="center">
-                  @foreach($empresas as $e)
-                  @if($e->id == $p->idEmpresa && $e->idUsuario == Auth::user()->id)
                   <a href="{{action('ProdutoController@deletar', $p->id)}}">
                     <i class="glyphicon glyphicon-edit"></i>
                   </a>
-                  @endif
-                  @endforeach
                 </td>
                 <td class="center">
-                  @foreach($empresas as $e)
-                  @if($e->id == $p->idEmpresa && $e->idUsuario == Auth::user()->id)
                   <a href="/deletarproduto/{{$p->id}}">
                     <i class="glyphicon glyphicon-trash"></i>
                   </a>
-                  @endif
-                  @endforeach
                 </td>
-                @endif
               </tr>
+              @endif
               @endforeach
+              @endforeach
+              @endif
             </tbody>
           </table>
         </div>
